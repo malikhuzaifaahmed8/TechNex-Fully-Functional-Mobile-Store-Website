@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TechNex | Premium Electronics Marketplace</title>
+     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #222 0%, #222 100%);
+            --secondary-gradient: linear-gradient(135deg, #2222 0%, #2222 100%);
+            --dark-color: #1f1f1f;
+            --medium-color: #222;
+            --light-color: #f7fafc;
+            --accent-color: #2e2e2e;
+            --success-color: #48bb78;
+            --error-color: #f56565;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.05);
+        }
+
+        .Ccontent{
+            margin-top: 160px;
+        }
+
+        /* Contact Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 6rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -5rem;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.3)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            color: var(--dark-color);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .contact-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 2;
+            color: var(--medium-color);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .contact-form-container {
+            flex: 2;
+            min-width: 320px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover::after {
+            width: 6px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.75rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .contact-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.75rem;
+            transition: var(--transition);
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .contact-method:hover {
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-right: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .contact-method:hover .contact-icon {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .contact-details p, .contact-details a {
+            color: var(--medium-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .business-hours {
+            margin-top: 2rem;
+        }
+
+        .business-hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .business-hours li:hover {
+            background: rgba(0,0,0,0.02);
+            padding-left: 8px;
+        }
+
+        .business-hours li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .hours {
+            color: var(--medium-color);
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: rgba(0,0,0,0.02);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+            background: white;
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1.25rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn i {
+            margin-left: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Map Styles */
+        #contact-map {
+            height: 350px;
+            border-radius: 12px;
+            margin-top: 2.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        #contact-map:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1300px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.75rem;
+            margin-bottom: 3.5rem;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .faq-item {
+            margin-bottom: 1.25rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            background: white;
+            padding: 1.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        .faq-question:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.75rem;
+            transition: var(--transition);
+            color: var(--accent-color);
+        }
+
+        .faq-question.active {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+            color: var(--dark-color);
+        }
+
+        .faq-answer {
+            background: white;
+            padding: 0 1.75rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), padding 0.5s ease;
+        }
+
+        .faq-answer.show {
+            padding: 0 1.75rem 1.75rem;
+            max-height: 800px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--success-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            box-shadow: var(--shadow-md);
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .success-message i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .success-message h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Support Team Section */
+        .support-team-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            padding: 6rem 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+            margin: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.75rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--medium-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 2rem;
+            border: 5px solid white;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-member:hover .team-photo {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .team-member .position {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .team-member .position::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .team-member:hover .position::after {
+            width: 60px;
+        }
+
+        .team-member p {
+            color: var(--medium-color);
+            font-size: 0.95rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: var(--primary-gradient);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .contact-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .contact-hero {
+                padding: 5rem 0 4rem;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+                margin-bottom: -3rem;
+            }
+            
+            .support-team-section {
+                clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width, .submit-btn {
+                grid-column: span 1;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1.1rem;
+                padding: 0 1.5rem;
+            }
+            
+            .contact-container {
+                padding: 0 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.25rem;
+            }
+            
+            .support-team-section {
+                clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .team-member {
+                padding: 2rem 1.5rem;
+            }
+            
+            .team-photo {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<main class="Ccontent">
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="Checkout">
+            <h1 data-aos="fade-down" data-aos-delay="100">Connect With TechNex</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Our team is ready to assist you with any questions about our products, services, or your orders. Reach out and we'll respond promptly.</p>
+        </div>
+    </section>
+
+    <!-- Main Contact Content -->
+    <div class="contact-container">
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <div class="contact-card" data-aos="fade-right" data-aos-delay="100">
+                <h3>Contact Information</h3>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Our Headquarters</h4>
+                        <p>123 Tech Avenue, Silicon Valley<br>San Francisco, CA 94107</p>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p><a href="tel:+18005551234">+1 (800) 555-1234</a></p>
+                        <p><a href="tel:+18005554321">+1 (800) 555-4321</a> (Support)</p>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p><a href="mailto:info@technex.com">info@technex.com</a></p>
+                        <p><a href="mailto:support@technex.com">support@technex.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="business-hours">
+                    <h4>Business Hours</h4>
+                    <ul>
+                        <li><span class="day">Monday - Friday</span> <span class="hours">9:00 AM - 6:00 PM</span></li>
+                        <li><span class="day">Saturday</span> <span class="hours">10:00 AM - 4:00 PM</span></li>
+                        <li><span class="day">Sunday</span> <span class="hours">Closed</span></li>
+                    </ul>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-card" data-aos="fade-right" data-aos-delay="200">
+                <h3>Technical Support</h3>
+                <p>For technical assistance with your products, please visit our <a href="#">support center</a> or call our dedicated support line.</p>
+                
+                <div class="contact-method">
+                    <div class="contact-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>24/7 Support Line</h4>
+                        <p><a href="tel:+18005554321">+1 (800) 555-4321</a></p>
+                        <p><a href="mailto:support@technex.com">support@technex.com</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="contact-map" data-aos="fade-right" data-aos-delay="300"></div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-container">
+            <div class="contact-card" data-aos="fade-left" data-aos-delay="100">
+                <h3>Send Us a Message</h3>
+                <p>Fill out the form below and we'll get back to you as soon as possible. Average response time is 1-2 business days.</p>
+                
+                <div class="success-message" id="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                </div>
+                
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select id="subject" name="subject" class="form-control" required>
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="product">Product Question</option>
+                            <option value="order">Order Status</option>
+                            <option value="return">Returns & Exchanges</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+            
+            <div class="contact-card" data-aos="fade-left" data-aos-delay="200">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How long does shipping usually take?</div>
+                    <div class="faq-answer">
+                        <p>Standard shipping typically takes 3-5 business days within the continental US. For international orders, delivery times vary by destination but generally range from 7-14 business days. Expedited shipping options are available at checkout.</p>
+                        <p>You'll receive tracking information as soon as your order ships, allowing you to monitor its progress in real-time.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What is your return policy?</div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for most items. Products must be in original condition with all packaging and accessories. Some items like software, opened media, and special order products may be excluded. Please see our full return policy for details.</p>
+                        <p>To initiate a return, please visit our <a href="#">returns portal</a> or contact our customer service team.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer international shipping?</div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to over 50 countries worldwide. Shipping costs and delivery times vary by destination. During checkout, you'll see the available shipping options and estimated delivery dates for your location.</p>
+                        <p>Please note that international orders may be subject to customs fees and import taxes, which are the responsibility of the recipient.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How can I track my order?</div>
+                    <div class="faq-answer">
+                        <p>Once your order ships, you'll receive a confirmation email with tracking information. You can also track your order by logging into your account on our website or by contacting our customer service team.</p>
+                        <p>For any delivery issues, our support team is available 24/7 to assist you.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer bulk discounts for large orders?</div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer volume discounts for business and educational purchases. Please contact our sales team at <a href="mailto:sales@technex.com">sales@technex.com</a> with details about your order requirements to receive a customized quote.</p>
+                        <p>We also offer dedicated account managers for corporate clients to streamline the ordering process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+   
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        // Initialize AOS animation library with smoother settings
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out-back',
+            once: true,
+            mirror: false,
+            offset: 50
+        });
+        
+        // Initialize map with more detailed styling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Map initialization with custom icon
+            const map = L.map('contact-map', {
+                zoomControl: false,
+                scrollWheelZoom: false,
+                touchZoom: false,
+                doubleClickZoom: false
+            }).setView([37.7749, -122.4194], 15);
+            
+            // Add tile layer with custom style
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Custom icon
+            const technexIcon = L.divIcon({
+                className: 'technex-marker',
+                html: '<i class="fas fa-map-marker-alt" style="color: #667eea; font-size: 2.5rem; text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);"></i>',
+                iconSize: [40, 40],
+                iconAnchor: [20, 40],
+                popupAnchor: [0, -40]
+            });
+            
+            // Add marker with custom icon
+            L.marker([37.7749, -122.4194], {icon: technexIcon}).addTo(map)
+                .bindPopup(`
+                    <div style="font-family: 'Inter', sans-serif; padding: 0.5rem;">
+                        <h3 style="margin: 0 0 0.5rem; color: #2d3748; font-size: 1.1rem;">TechNex Headquarters</h3>
+                        <p style="margin: 0; color: #4a5568; font-size: 0.9rem;">123 Tech Avenue<br>San Francisco, CA 94107</p>
+                    </div>
+                `)
+                .openPopup();
+            
+            // Disable zoom on scroll
+            map.touchZoom.disable();
+            map.doubleClickZoom.disable();
+            map.scrollWheelZoom.disable();
+            
+            // Re-enable zoom on map click for mobile
+            map.on('click', function() {
+                if (window.innerWidth <= 768) {
+                    map.scrollWheelZoom.enable();
+                    setTimeout(() => {
+                        map.scrollWheelZoom.disable();
+                    }, 3000);
+                }
+            });
+            
+            // FAQ functionality with smoother transitions
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    faqQuestions.forEach(q => {
+                        if (q !== question) {
+                            q.classList.remove('active');
+                            const otherAnswer = q.nextElementSibling;
+                            otherAnswer.style.maxHeight = '0';
+                            otherAnswer.style.padding = '0 1.75rem';
+                            setTimeout(() => {
+                                otherAnswer.classList.remove('show');
+                            }, 500);
+                        }
+                    });
+                    
+                    // Toggle current FAQ
+                    if (isActive) {
+                        question.classList.remove('active');
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 1.75rem';
+                        setTimeout(() => {
+                            answer.classList.remove('show');
+                        }, 500);
+                    } else {
+                        question.classList.add('active');
+                        answer.classList.add('show');
+                        setTimeout(() => {
+                            answer.style.maxHeight = answer.scrollHeight + 'px';
+                            answer.style.padding = '0 1.75rem 1.75rem';
+                        }, 10);
+                    }
+                });
+            });
+            
+            // Form submission with better UX
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate form submission with delay
+                    setTimeout(() => {
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        
+                        // Reset button
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }, 1500);
+                });
+            }
+            
+            // Add smooth scrolling to FAQ items when opened
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('faq-question')) {
+                    setTimeout(() => {
+                        e.target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        });
+                    }, 300);
+                }
+            });
+            
+            // Add hover effect to contact methods on mobile
+            if (window.innerWidth <= 768) {
+                const contactMethods = document.querySelectorAll('.contact-method');
+                contactMethods.forEach(method => {
+                    method.style.transition = 'none';
+                });
+            }
+        });
+        
+        // Add smooth scroll behavior for the whole document
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+
+        <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+   <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

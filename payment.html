@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNex | Samsung Galaxy S23 Ultra - Purchase</title>
+
+       <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+.pay-main{
+    gap: 30px;
+    display: flex;
+    margin-top: 250px;
+    margin-left: 150px;
+}
+.pay-container{
+    min-height: 100vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 60px;
+}
+
+.pay-container .pay-form{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    padding: 20px;
+    width: 600px;
+    padding-top: 160px;
+}
+
+.pay-container .pay-form .pay-inputBox{
+    margin-top: 20px;
+}
+
+.pay-container .pay-form .pay-inputBox span{
+    display: block;
+    color:#999;
+    padding-bottom: 5px;
+}
+
+.pay-container .pay-form .pay-inputBox input,
+.pay-container .pay-form .pay-inputBox select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid rgba(0,0,0,.3);
+    color:#444;
+}
+
+.pay-container .pay-form .pay-flexbox{
+    display: flex;
+    gap:15px;
+}
+
+.pay-container .pay-form .pay-flexbox .pay-inputBox{
+    flex:1 1 150px;
+}
+
+.pay-container .pay-form .pay-submit-btn{
+    width: 100%;
+    background:#222;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color:#fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.pay-container .pay-form .pay-submit-btn:hover{
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.pay-container .pay-card-container{
+    margin-bottom: -150px;
+    position: relative;
+    height: 250px;
+    width: 400px;
+}
+
+.pay-container .pay-card-container .pay-front{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0; left: 0;
+    background:#222;
+    border-radius: 5px;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    padding:20px;
+    transform:perspective(1000px) rotateY(0deg);
+    transition:transform .4s ease-out;
+}
+
+.pay-container .pay-card-container .pay-front .pay-image{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.pay-container .pay-card-container .pay-front .pay-image img{
+    height: 50px;
+}
+
+.pay-container .pay-card-container .pay-front .pay-card-number-box{
+    padding:30px 0;
+    font-size: 22px;
+    color:#fff;
+}
+
+.pay-container .pay-card-container .pay-front .pay-flexbox{
+    display: flex;
+}
+
+.pay-container .pay-card-container .pay-front .pay-flexbox .pay-box:nth-child(1){
+    margin-right: auto;
+}
+
+.pay-container .pay-card-container .pay-front .pay-flexbox .pay-box{
+    font-size: 15px;
+    color:#fff;
+}
+
+.pay-container .pay-card-container .pay-back{
+    position: absolute;
+    top:0; left: 0;
+    height: 100%;
+    width: 100%;
+    background:#222;
+    border-radius: 5px;
+    padding: 20px 0;
+    text-align: right;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    transform:perspective(1000px) rotateY(180deg);
+    transition:transform .4s ease-out;
+}
+
+.pay-container .pay-card-container .pay-back .pay-stripe{
+    background: #000;
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+}
+
+.pay-container .pay-card-container .pay-back .pay-box{
+    padding: 0 20px;
+}
+
+.pay-container .pay-card-container .pay-back .pay-box span{
+    color:#fff;
+    font-size: 15px;
+}
+
+.pay-container .pay-card-container .pay-back .pay-box .pay-cvv-box{
+    height: 50px;
+    padding: 10px;
+    margin-top: 5px;
+    color:#333;
+    background: #fff;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.pay-container .pay-card-container .pay-back .pay-box img{
+    margin-top: 30px;
+    height: 30px;
+}
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+     
+        
+        .pay-card {
+            width: 380px;
+            height: 625px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .pay-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+        }
+        
+        .pay-header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .pay-header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+        
+        .pay-header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .pay-product-image {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+        
+        .pay-product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+        
+        .pay-card:hover .pay-product-image img {
+            transform: scale(1.05) rotate(-5deg);
+        }
+        
+        .pay-product-image::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(34,34,34,0.1) 0%, rgba(255,255,255,0) 70%);
+            top: -50px;
+            right: -50px;
+            z-index: 1;
+        }
+        
+        .pay-details {
+            padding: 25px;
+        }
+        
+        .pay-specs {
+            margin-bottom: 20px;
+        }
+        
+        .pay-spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        
+        .pay-spec-row:last-child {
+            border-bottom: none;
+        }
+        
+        .pay-spec-name {
+            color: #777;
+        }
+        
+        .pay-spec-value {
+            font-weight: 600;
+            color: #222;
+        }
+        
+        .pay-price {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .pay-price-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .pay-price-amount::before {
+            content: "$";
+            font-size: 18px;
+            position: relative;
+            top: -5px;
+            margin-right: 2px;
+        }
+        
+        .pay-price-text {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .pay-action {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pay-buy-btn {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(34,34,34,0.2);
+        }
+        
+        .pay-buy-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34,34,34,0.3);
+        }
+        
+        .pay-watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        /* Animation for the card entry */
+        @keyframes pay-cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pay-card {
+            animation: pay-cardEntry 0.7s ease-out forwards;
+        }
+</style>
+
+</head>
+<body>
+
+
+      <!-- Loading screen with particles -->
+    <div class="loader">
+        <div class="loader-circle"></div>
+        <div class="particles" id="loader-particles"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <main class="pay-main">
+    <div class="pay-card">
+        <div class="pay-header">
+            <h1>Samsung Galaxy S23 Ultra</h1>
+            <!-- <p>Your premium smartphone experience</p> -->
+        </div>
+        
+        <div class="pay-product-image">
+            <img src="/Mobile Stores/iWorldShop/images/ultras.png" alt="Samsung Galaxy S23 Ultra">
+        </div>
+        
+        <div class="pay-details">
+            <div class="pay-specs">
+                <div class="pay-spec-row">
+                    <span class="pay-spec-name">Display</span>
+                    <span class="pay-spec-value">6.8" Dynamic AMOLED 2X</span>
+                </div>
+                <div class="pay-spec-row">
+                    <span class="pay-spec-name">Processor</span>
+                    <span class="pay-spec-value">Snapdragon 8 Gen 2</span>
+                </div>
+                <div class="pay-spec-row">
+                    <span class="pay-spec-name">Memory</span>
+                    <span class="pay-spec-value">12GB RAM + 256GB</span>
+                </div>
+                <div class="pay-spec-row">
+                    <span class="pay-spec-name">Camera</span>
+                    <span class="pay-spec-value">200MP + 12MP + 10MP + 10MP</span>
+                </div>
+                <div class="pay-spec-row">
+                    <span class="pay-spec-name">Battery</span>
+                    <span class="pay-spec-value">5000mAh</span>
+                </div>
+            </div>
+            
+            <div class="pay-price">
+                <div class="pay-price-amount">1,199</div>
+                <div class="pay-price-text">Including all taxes</div>
+            </div>
+            
+         
+        </div>
+        
+        <!-- <div class="pay-watermark">Samsung Official</div> -->
+    </div>
+
+    <div class="pay-container">
+
+    <div class="pay-card-container">
+
+        <div class="pay-front">
+            <div class="pay-image">
+                <img src="image/chip.png" alt="">
+                <img src="image/visa.png" alt="">
+            </div>
+            <div class="pay-card-number-box">################</div>
+            <div class="pay-flexbox">
+                <div class="pay-box">
+                    <span>card holder</span>
+                    <div class="pay-card-holder-name">full name</div>
+                </div>
+                <div class="pay-box">
+                    <span>expires</span>
+                    <div class="pay-expiration">
+                        <span class="pay-exp-month">mm</span>
+                        <span class="pay-exp-year">yy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pay-back">
+            <div class="pay-stripe"></div>
+            <div class="pay-box">
+                <span>cvv</span>
+                <div class="pay-cvv-box"></div>
+                <img src="image/visa.png" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <form action="" class="pay-form">
+        <div class="pay-inputBox">
+            <span>card number</span>
+            <input type="text" maxlength="16" class="pay-card-number-input">
+        </div>
+        <div class="pay-inputBox">
+            <span>card holder</span>
+            <input type="text" class="pay-card-holder-input">
+        </div>
+        <div class="pay-flexbox">
+            <div class="pay-inputBox">
+                <span>expiration mm</span>
+                <select name="" id="" class="pay-month-input">
+                    <option value="month" selected disabled>month</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div class="pay-inputBox">
+                <span>expiration yy</span>
+                <select name="" id="" class="pay-year-input">
+                    <option value="year" selected disabled>year</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                </select>
+            </div>
+            <div class="pay-inputBox">
+                <span>cvv</span>
+                <input type="text" maxlength="4" class="pay-cvv-input">
+            </div>
+        </div>
+        <input type="submit" value="submit" class="pay-submit-btn">
+    </form>
+
+</div>    
+    
+</main>
+
+<!-- Newsletter -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="newsletter" data-aos="fade-up">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get the latest tech news, exclusive offers and product announcements</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+document.querySelector('.pay-card-number-input').oninput = () =>{
+    document.querySelector('.pay-card-number-box').innerText = document.querySelector('.pay-card-number-input').value;
+}
+
+document.querySelector('.pay-card-holder-input').oninput = () =>{
+    document.querySelector('.pay-card-holder-name').innerText = document.querySelector('.pay-card-holder-input').value;
+}
+
+document.querySelector('.pay-month-input').oninput = () =>{
+    document.querySelector('.pay-exp-month').innerText = document.querySelector('.pay-month-input').value;
+}
+
+document.querySelector('.pay-year-input').oninput = () =>{
+    document.querySelector('.pay-exp-year').innerText = document.querySelector('.pay-year-input').value;
+}
+
+document.querySelector('.pay-cvv-input').onmouseenter = () =>{
+    document.querySelector('.pay-front').style.transform = 'perspective(1000px) rotateY(-180deg)';
+    document.querySelector('.pay-back').style.transform = 'perspective(1000px) rotateY(0deg)';
+}
+
+document.querySelector('.pay-cvv-input').onmouseleave = () =>{
+    document.querySelector('.pay-front').style.transform = 'perspective(1000px) rotateY(0deg)';
+    document.querySelector('.pay-back').style.transform = 'perspective(1000px) rotateY(180deg)';
+}
+
+document.querySelector('.pay-cvv-input').oninput = () =>{
+    document.querySelector('.pay-cvv-box').innerText = document.querySelector('.pay-cvv-input').value;
+}
+</script>
+
+    <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

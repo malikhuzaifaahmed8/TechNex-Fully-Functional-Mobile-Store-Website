@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 15 Pro | TechNex Premium Electronics</title>
+    <!-- Google Fonts -->
+     <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kumbh+Sans:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+    
+
+/* Product Detail Container */
+.product-detail {
+    max-width: 134rem;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+}
+
+.product-detail__container {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: 8rem;
+
+    margin-top: 200px
+}
+
+/* Image Gallery Section */
+.product-detail__gallery {
+    position: relative;
+    perspective: 1500px;
+}
+
+.product-detail__main-image {
+    width: 100%;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-xl);
+    animation: float 6s ease-in-out infinite;
+}
+
+.product-detail__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.thumbnail-btn {
+    display: block;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    padding: 0;
+}
+
+.thumbnail-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--white);
+    border: 3px solid transparent;
+    border-radius: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.thumbnail-btn.active::after,
+.thumbnail-btn:hover::after {
+    border: 3px solid var(--orange);
+    opacity: 0.5;
+}
+
+.thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: all 0.3s;
+}
+
+/* Product Info Section */
+.product-detail__info {
+    padding-top: 2rem;
+}
+
+.product-detail__brand {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.product-detail__title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.product-detail__subtitle {
+    font-size: 1.6rem;
+    color: var(--dark-grayish-blue);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.product-detail__description {
+    font-size: 1.6rem;
+    color: var(--dark-grayish-blue);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.product-detail__pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.price-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.current-price {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.discount-badge {
+    padding: 0.4rem 0.8rem;
+    background-color: var(--pale-orange);
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.original-price {
+    font-size: 1.5rem;
+    color: var(--grayish-blue);
+    text-decoration: line-through;
+}
+
+.product-detail__delivery {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background-color: var(--light-grayish-blue);
+    border-radius: 1rem;
+}
+
+.delivery-icon {
+    font-size: 2rem;
+    color: var(--orange);
+}
+
+.delivery-text {
+    font-size: 1.4rem;
+}
+
+.delivery-text strong {
+    color: var(--orange);
+}
+
+/* Color and Storage Options */
+.product-detail__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.color-options,
+.storage-options {
+    margin-bottom: 0;
+}
+
+.options-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.color-selector {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.color-btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.color-btn::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.color-btn.active::after,
+.color-btn:hover::after {
+    border-color: var(--orange);
+}
+
+.storage-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.storage-btn {
+    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    background-color: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.storage-btn.active,
+.storage-btn:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    border-color: var(--orange);
+}
+
+/* Quantity and Add to Cart */
+.product-detail__actions {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grayish-blue);
+    border-radius: 1rem;
+    overflow: hidden;
+    min-width: 140px;
+}
+
+.quantity-btn {
+    border: none;
+    background: none;
+    padding: 1.2rem 1.8rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--orange);
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: var(--grayish-blue);
+}
+
+.quantity-display {
+    padding: 0 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    min-width: 4rem;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 3rem;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 1rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 125, 26, 0.3);
+    transition: all 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: hsl(26, 100%, 45%);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(255, 125, 26, 0.4);
+}
+
+.cart-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Product Features */
+.product-detail__features {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--light-grayish-blue);
+    border-radius: 1rem;
+}
+
+.product-detail__features h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.product-detail__features ul {
+    list-style-type: none;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--dark-grayish-blue);
+}
+
+.product-detail__features li {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.product-detail__features li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+}
+
+.product-detail__features li:hover {
+    color: var(--orange);
+    transform: translateX(5px);
+}
+
+/* Tech Specs */
+.product-detail__specs {
+    margin-top: 3rem;
+}
+
+.product-detail__specs h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.spec-icon {
+    font-size: 1.6rem;
+    color: var(--orange);
+    margin-top: 0.3rem;
+}
+
+.spec-text {
+    font-size: 1.4rem;
+}
+
+.spec-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.spec-value {
+    color: var(--dark-grayish-blue);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 1024px) {
+    .product-detail__container {
+        gap: 5rem;
+    }
+    
+    .product-detail__title {
+        font-size: 2.8rem;
+    }
+
+    .product-detail__options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .product-detail__container {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+        padding: 2rem;
+    }
+    
+    .product-detail__title {
+        font-size: 2.8rem;
+    }
+    
+    .product-detail__actions {
+        flex-direction: column;
+    }
+    
+    .quantity-selector {
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .product-detail__thumbnails {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-detail__title {
+        font-size: 2.4rem;
+    }
+    
+    .product-detail__features h3 {
+        font-size: 1.6rem;
+    }
+    
+    .product-detail__features ul {
+        font-size: 1.4rem;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* Related Products Section */
+.related-products {
+    margin-top: 8rem;
+    padding: 0 3rem;
+}
+
+.related-products__container {
+    max-width: 134rem;
+    margin: 0 auto;
+}
+
+.related-products__title {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 700;
+}
+
+.related-products__title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient);
+    border-radius: 3px;
+}
+
+/* Product cards */
+.related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.related-product-card {
+    background: white;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    border: 1px solid var(--gray-200);
+}
+
+.related-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 102, 204, 0.2);
+}
+
+.related-product-card__image {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.related-product-card__image img {
+    max-width: 80%;
+    height: auto;
+    transition: var(--transition);
+}
+
+.related-product-card__image .secondary-image {
+    position: absolute;
+    opacity: 0;
+}
+
+.related-product-card:hover .related-product-card__image .primary-image {
+    opacity: 0;
+}
+
+.related-product-card:hover .related-product-card__image .secondary-image {
+    opacity: 1;
+}
+
+.related-product-card__info {
+    padding: 1.5rem;
+}
+
+.product-badge {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    background: var(--accent);
+    color: var(--dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.related-product-card__name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.related-product-card:hover .related-product-card__name {
+    color: var(--orange);
+}
+
+.related-product-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.related-product-card__price .original-price {
+    color: var(--gray-300);
+    font-size: 0.9rem;
+    text-decoration: line-through;
+}
+
+.related-product-card__price .current-price {
+    font-weight: 700;
+    color: var(--orange);
+    font-size: 1.1rem;
+}
+
+.related-product-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--yellow);
+    font-size: 0.9rem;
+}
+
+.related-product-card__rating .rating-count {
+    color: var(--gray-300);
+    margin-left: 0.2rem;
+}
+
+.related-product-card__actions {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.related-product-card:hover .related-product-card__actions {
+    opacity: 1;
+}
+
+.action-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: white;
+    color: var(--dark);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: 1rem;
+}
+
+.action-btn:hover {
+    background: var(--orange);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 768px) {
+    .related-products__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .related-products__title {
+        font-size: 2.4rem;
+    }
+    
+    .related-products__grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <div class="product-detail">
+    <div class="product-detail__container">
+        <!-- Image Gallery Section -->
+        <div class="product-detail__gallery">
+            <img src="images/dm3_s23_ultra_green_2023_4_1.jpg" alt="Main Product Image" class="product-detail__main-image">
+            
+            <div class="product-detail__thumbnails">
+                <button class="thumbnail-btn active">
+                    <img src="images/ultra.png" alt="Thumbnail 1" class="thumbnail-img">
+                </button>
+                <button class="thumbnail-btn">
+                    <img src="images/ultras.png" alt="Thumbnail 2" class="thumbnail-img">
+                </button>
+                <button class="thumbnail-btn">
+                    <img src="images/ultrass.png" alt="Thumbnail 3" class="thumbnail-img">
+                </button>
+                <button class="thumbnail-btn">
+                    <img src="images/48d8259ade805e7e9d6bba4d4f6a6afb.jpg_750x750.jpg_.webp" alt="Thumbnail 4" class="thumbnail-img">
+                </button>
+            </div>
+        </div>
+
+        <!-- Product Info Section -->
+        <div class="product-detail__info">
+            <span class="product-detail__brand">SAMSUNG</span>
+            <h1 class="product-detail__title">Samsung Ultra 23</h1>
+            <p class="product-detail__subtitle">Flagship model with advanced camera system</p>
+            
+            <p class="product-detail__description">
+                Experience cutting-edge technology with our latest smartphone featuring a 108MP camera, 
+                120Hz AMOLED display, and all-day battery life. Perfect for photography enthusiasts 
+                and power users alike.
+            </p>
+            
+            <div class="product-detail__pricing">
+                <div class="price-group">
+                    <span class="current-price">$899.99</span>
+                    <span class="discount-badge">25% OFF</span>
+                </div>
+                <span class="original-price">$1,199.99</span>
+            </div>
+            
+            <div class="product-detail__delivery">
+                <i class="fas fa-truck delivery-icon"></i>
+                <span class="delivery-text">Free <strong>express delivery</strong> on all orders</span>
+            </div>
+            
+            <div class="product-detail__options">
+                <div class="color-options">
+                    <h3 class="options-title">Color</h3>
+                    <div class="color-selector">
+                        <button class="color-btn active" style="background-color: #111111;" data-color="black"></button>
+                        <button class="color-btn" style="background-color: #c0c0c0;" data-color="silver"></button>
+                        <button class="color-btn" style="background-color: #ff6b00;" data-color="orange"></button>
+                    </div>
+                </div>
+                
+                <div class="storage-options">
+                    <h3 class="options-title">Storage</h3>
+                    <div class="storage-selector">
+                        <button class="storage-btn active">128GB</button>
+                        <button class="storage-btn">256GB</button>
+                        <button class="storage-btn">512GB</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-detail__actions">
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus">-</button>
+                    <span class="quantity-display">1</span>
+                    <button class="quantity-btn plus">+</button>
+                </div>
+                <button class="add-to-cart-btn">
+                    <i class="fas fa-shopping-cart cart-icon"></i>
+                    Add to Cart
+                </button>
+            </div>
+            
+            <div class="product-detail__features">
+                <h3>Key Features</h3>
+                <ul>
+                    <li>6.7" AMOLED Display with 120Hz Refresh Rate</li>
+                    <li>Triple Camera System (108MP + 12MP + 8MP)</li>
+                    <li>5000mAh Battery with Fast Charging</li>
+                    <li>IP68 Water and Dust Resistance</li>
+                    <li>5G Connectivity</li>
+                </ul>
+            </div>
+            
+            <div class="product-detail__specs">
+                <h3>Technical Specifications</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <i class="fas fa-microchip spec-icon"></i>
+                        <div class="spec-text">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">Snapdragon 8 Gen 2</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-memory spec-icon"></i>
+                        <div class="spec-text">
+                            <span class="spec-label">RAM:</span>
+                            <span class="spec-value">12GB LPDDR5</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-expand spec-icon"></i>
+                        <div class="spec-text">
+                            <span class="spec-label">Display:</span>
+                            <span class="spec-value">6.7" QHD+ (3200x1440)</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-battery-full spec-icon"></i>
+                        <div class="spec-text">
+                            <span class="spec-label">Battery:</span>
+                            <span class="spec-value">5000mAh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="related-products">
+    <div class="related-products__container">
+        <h2 class="related-products__title">You May Also Like</h2>
+        
+        <div class="related-products__grid">
+            <!-- Product Card 1 -->
+            <div class="related-product-card">
+                <div class="related-product-card__image">
+                    <span class="product-badge">New</span>
+                    <img src="images/190402_E1_FW19_EarbudsWCase_S13_0033-1_1605x1605_BACK.png" alt="Product 1" class="primary-image">
+                    <img src="product1-alt.jpg" alt="Product 1 Alternate" class="secondary-image">
+                    <div class="related-product-card__actions">
+                        <button class="action-btn"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+                <div class="related-product-card__info">
+                    <h3 class="related-product-card__name">Wireless Earbuds Pro</h3>
+                    <div class="related-product-card__price">
+                        <span class="current-price">$129.99</span>
+                        <span class="original-price">$179.99</span>
+                    </div>
+                    <div class="related-product-card__rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="rating-count">(42)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 2 -->
+            <div class="related-product-card">
+                <div class="related-product-card__image">
+                    <span class="product-badge">-30%</span>
+                    <img src="images/watch.avif" alt="Product 2" class="primary-image">
+                    <img src="product2-alt.jpg" alt="Product 2 Alternate" class="secondary-image">
+                    <div class="related-product-card__actions">
+                        <button class="action-btn"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+                <div class="related-product-card__info">
+                    <h3 class="related-product-card__name">Smart Watch Series 5</h3>
+                    <div class="related-product-card__price">
+                        <span class="current-price">$199.99</span>
+                        <span class="original-price">$249.99</span>
+                    </div>
+                    <div class="related-product-card__rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="rating-count">(28)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 3 -->
+            <div class="related-product-card">
+                <div class="related-product-card__image">
+                    <img src="images/JBL_Quantum_400_Product Image_Hero Mic Up.webp" alt="Product 3" class="primary-image">
+                    <img src="product3-alt.jpg" alt="Product 3 Alternate" class="secondary-image">
+                    <div class="related-product-card__actions">
+                        <button class="action-btn"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+                <div class="related-product-card__info">
+                    <h3 class="related-product-card__name">Bluetooth Speaker</h3>
+                    <div class="related-product-card__price">
+                        <span class="current-price">$89.99</span>
+                    </div>
+                    <div class="related-product-card__rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="rating-count">(56)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 4 -->
+            <div class="related-product-card">
+                <div class="related-product-card__image">
+                    <span class="product-badge">Bestseller</span>
+                    <img src="images/ipad mini.png" alt="Product 4" class="primary-image">
+                    <img src="product4-alt.jpg" alt="Product 4 Alternate" class="secondary-image">
+                    <div class="related-product-card__actions">
+                        <button class="action-btn"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+                <div class="related-product-card__info">
+                    <h3 class="related-product-card__name">Tablet Pro 10.5"</h3>
+                    <div class="related-product-card__price">
+                        <span class="current-price">$329.99</span>
+                        <span class="original-price">$399.99</span>
+                    </div>
+                    <div class="related-product-card__rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="rating-count">(112)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Newsletter -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="newsletter">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get the latest tech news, exclusive offers and product announcements delivered straight to your inbox.</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Quantity selector functionality
+        const decreaseBtn = document.getElementById('decrease-qty');
+        const increaseBtn = document.getElementById('increase-qty');
+        const quantityDisplay = document.getElementById('quantity');
+
+        let quantity = 1;
+
+        decreaseBtn.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                quantityDisplay.textContent = quantity;
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            quantity++;
+            quantityDisplay.textContent = quantity;
+        });
+
+        // Thumbnail image switcher
+        const thumbnails = document.querySelectorAll('.thumbnail-btn');
+        const mainImage = document.querySelector('.product-main-image');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                thumbnail.classList.add('active');
+                
+                // Get the new image source
+                const newSrc = thumbnail.querySelector('img').src;
+                
+                // Animate the main image change
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = newSrc;
+                    mainImage.style.opacity = '1';
+                }, 200);
+            });
+        });
+
+        // Color selector functionality
+        const colorBtns = document.querySelectorAll('.color-btn');
+        colorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Here you would typically change product images based on color selection
+            });
+        });
+
+        // Storage selector functionality
+        const storageBtns = document.querySelectorAll('.storage-btn');
+        storageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                storageBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Here you would typically update price based on storage selection
+            });
+        });
+
+        // 3D tilt effect for main product image
+        const tiltElement = document.querySelector('.tilt-element');
+
+        if (tiltElement) {
+            tiltElement.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = tiltElement.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                
+                tiltElement.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${y * -10}deg) scale(1.05)`;
+                tiltElement.style.boxShadow = `${x * 20}px ${y * 20}px 30px rgba(0, 0, 0, 0.2)`;
+            });
+            
+            tiltElement.addEventListener('mouseleave', () => {
+                tiltElement.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale(1)';
+                tiltElement.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            });
+        }
+
+        // Add to cart animation
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', () => {
+                addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+                addToCartBtn.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    addToCartBtn.style.backgroundColor = '';
+                }, 2000);
+            });
+        }
+
+        // Toggle reviews functionality
+        const toggleReviewsBtn = document.querySelector('.toggle-reviews-btn');
+        const reviewsContent = document.querySelector('.reviews-content');
+
+        if (toggleReviewsBtn && reviewsContent) {
+            toggleReviewsBtn.addEventListener('click', () => {
+                reviewsContent.classList.toggle('show');
+                toggleReviewsBtn.classList.toggle('active');
+                
+                // Change button text
+                const span = toggleReviewsBtn.querySelector('span');
+                if (reviewsContent.classList.contains('show')) {
+                    span.textContent = 'Hide Reviews';
+                } else {
+                    span.textContent = 'Show Reviews';
+                }
+            });
+        }
+
+        // Make product cards clickable
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't navigate if a button was clicked
+                if (!e.target.closest('.product-btn button')) {
+                    const link = card.getAttribute('onclick');
+                    if (link) {
+                        const url = link.match(/'([^']+)'/)[1];
+                        window.location.href = url;
+                    }
+                }
+            });
+        });
+    </script>
+
+        <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+  <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNex | Premium Electronics Marketplace</title>
+    <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <!-- Add SweetAlert2 CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/content.css">
+    <style>
+       .blog-deals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 200px;
+        }
+        
+        .blog-page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .blog-page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 10px;
+            color: #222;
+            letter-spacing: -0.5px;
+        }
+        
+        .blog-page-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .blog-deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-deal-section {
+            margin-bottom: 60px;
+        }
+        
+        .blog-section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .blog-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            color: #222;
+        }
+        
+        .blog-section-line {
+            flex-grow: 1;
+            height: 1px;
+            background: #e0e0e0;
+            margin-left: 20px;
+        }
+        
+        .blog-deal-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-deal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: #ddd;
+        }
+        
+        .blog-deal-image {
+            height: 380px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-deal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-deal-card:hover .blog-deal-image img {
+            transform: scale(1.03);
+        }
+        
+        .blog-deal-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .blog-badge-active {
+            background: #222;
+            color: white;
+        }
+        
+        .blog-badge-coming {
+            background: #f0f0f0;
+            color: #222;
+            border: 1px solid #ddd;
+        }
+        
+        .blog-badge-expiring {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .blog-deal-content {
+            padding: 20px;
+        }
+        
+        .blog-deal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #222;
+        }
+        
+        .blog-deal-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .blog-deal-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .blog-current-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #222;
+        }
+        
+        .blog-original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 10px;
+        }
+        
+        .blog-discount {
+            background: #f5f5f5;
+            color: #222;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .blog-deal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .blog-deal-timer {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-deal-timer svg {
+            margin-right: 5px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        .blog-deal-cta {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #222;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .blog-deal-cta:hover {
+            background: #111;
+        }
+        
+        .blog-coming-soon .blog-deal-cta {
+            background: #f0f0f0;
+            color: #666;
+            /* pointer-events: none; */
+        }
+        
+        .blog-deal-countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        
+        .blog-countdown-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .blog-countdown-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+        }
+        
+        .blog-countdown-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.5px;
+        }
+        
+        .blog-deal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 15px;
+        }
+        
+        .blog-deal-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+           /* Professional Notification Toast */
+    .custom-notify-toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ffffff;
+        color: #2d3748;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', 'Helvetica', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        border-left: 4px solid #4CAF50; /* Accent bar */
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s ease-out;
+        z-index: 1000;
+        max-width: 320px;
+    }
+    
+    .custom-notify-toast.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .custom-notify-toast .close-toast {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: #64748b;
+        font-size: 12px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    
+    .custom-notify-toast strong {
+        color: #1e293b;
+        font-weight: 600;
+    }
+
+    /* Responsive Styles */
+@media (max-width: 1200px) {
+    .blog-deals-container {
+        max-width: 1000px;
+        margin-top: 180px;
+    }
+    
+    .blog-deals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .blog-deals-container {
+        max-width: 90%;
+        margin-top: 160px;
+        padding: 0 20px;
+    }
+    
+    .blog-page-title {
+        font-size: 2.2rem;
+    }
+    
+    .blog-page-subtitle {
+        font-size: 1rem;
+        max-width: 500px;
+    }
+    
+    .blog-deals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .blog-deal-image {
+        height: 320px;
+    }
+    
+    .blog-section-title {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-deals-container {
+        margin-top: 140px;
+        padding: 0 15px;
+    }
+    
+    .blog-page-header {
+        margin-bottom: 40px;
+    }
+    
+    .blog-page-title {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    .blog-page-subtitle {
+        font-size: 0.95rem;
+        max-width: 400px;
+    }
+    
+    .blog-deal-section {
+        margin-bottom: 50px;
+    }
+    
+    .blog-section-header {
+        margin-bottom: 20px;
+    }
+    
+    .blog-section-title {
+        font-size: 1.3rem;
+    }
+    
+    .blog-deals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+    
+    .blog-deal-image {
+        height: 280px;
+    }
+    
+    .blog-deal-content {
+        padding: 18px;
+    }
+    
+    .blog-deal-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .blog-deal-description {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+    
+    .blog-current-price {
+        font-size: 1.3rem;
+    }
+    
+    .blog-original-price {
+        font-size: 0.95rem;
+    }
+    
+    .blog-discount {
+        font-size: 0.75rem;
+    }
+    
+    .blog-deal-countdown {
+        padding: 8px;
+    }
+    
+    .blog-countdown-value {
+        font-size: 1rem;
+    }
+    
+    .blog-countdown-label {
+        font-size: 0.6rem;
+    }
+    
+    .blog-deal-cta {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .custom-notify-toast {
+        right: 15px;
+        bottom: 15px;
+        max-width: 280px;
+        padding: 14px 20px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .blog-deals-container {
+        margin-top: 120px;
+        padding: 0 10px;
+    }
+    
+    .blog-page-header {
+        margin-bottom: 30px;
+    }
+    
+    .blog-page-title {
+        font-size: 1.8rem;
+    }
+    
+    .blog-page-subtitle {
+        font-size: 0.9rem;
+        max-width: 300px;
+    }
+    
+    .blog-deal-section {
+        margin-bottom: 40px;
+    }
+    
+    .blog-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .blog-section-line {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .blog-section-title {
+        font-size: 1.2rem;
+    }
+    
+    .blog-deals-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .blog-deal-card {
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .blog-deal-image {
+        height: 250px;
+    }
+    
+    .blog-deal-badge {
+        top: 10px;
+        right: 10px;
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .blog-deal-content {
+        padding: 16px;
+    }
+    
+    .blog-deal-title {
+        font-size: 1.1rem;
+    }
+    
+    .blog-deal-description {
+        font-size: 0.85rem;
+    }
+    
+    .blog-deal-price {
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 12px;
+    }
+    
+    .blog-current-price {
+        font-size: 1.25rem;
+    }
+    
+    .blog-original-price {
+        font-size: 0.9rem;
+    }
+    
+    .blog-discount {
+        font-size: 0.7rem;
+        margin-left: 0;
+    }
+    
+    .blog-deal-countdown {
+        margin-top: 12px;
+        padding: 6px;
+    }
+    
+    .blog-countdown-value {
+        font-size: 0.95rem;
+    }
+    
+    .blog-countdown-label {
+        font-size: 0.55rem;
+    }
+    
+    .blog-deal-tags {
+        margin-top: 12px;
+    }
+    
+    .blog-deal-tag {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+    
+    .blog-deal-cta {
+        padding: 10px;
+        font-size: 0.85rem;
+        margin-top: 12px;
+    }
+    
+    .blog-deal-meta {
+        font-size: 0.8rem;
+    }
+    
+    .custom-notify-toast {
+        right: 10px;
+        bottom: 10px;
+        max-width: calc(100% - 20px);
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .blog-deals-container {
+        margin-top: 100px;
+        padding: 0 8px;
+    }
+    
+    .blog-page-title {
+        font-size: 1.6rem;
+    }
+    
+    .blog-page-subtitle {
+        font-size: 0.85rem;
+        max-width: 280px;
+    }
+    
+    .blog-deal-image {
+        height: 220px;
+    }
+    
+    .blog-deal-content {
+        padding: 14px;
+    }
+    
+    .blog-deal-title {
+        font-size: 1rem;
+    }
+    
+    .blog-deal-description {
+        font-size: 0.8rem;
+    }
+    
+    .blog-current-price {
+        font-size: 1.2rem;
+    }
+    
+    .blog-original-price {
+        font-size: 0.85rem;
+    }
+    
+    .blog-deal-countdown {
+        padding: 5px;
+    }
+    
+    .blog-countdown-value {
+        font-size: 0.9rem;
+    }
+    
+    .blog-countdown-label {
+        font-size: 0.5rem;
+    }
+    
+    .blog-deal-cta {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .custom-notify-toast {
+        right: 8px;
+        bottom: 8px;
+        padding: 10px 14px;
+        font-size: 11px;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .blog-deals-container {
+        margin-top: 100px;
+    }
+    
+    .blog-deal-image {
+        height: 200px;
+    }
+    
+    .blog-deals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* High-resolution devices */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .blog-deal-card {
+        border-width: 0.5px;
+    }
+    
+    .blog-section-line {
+        height: 0.5px;
+    }
+}
+
+/* Print optimization for mobile */
+@media print and (max-width: 768px) {
+    .blog-deals-container {
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .blog-deal-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .blog-deal-cta {
+        display: none;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .blog-deal-card,
+    .blog-deal-cta,
+    .blog-deal-image img {
+        transition: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+    .blog-deal-card {
+        background: #2d2d2d;
+        border-color: #444;
+    }
+    
+    .blog-deal-title,
+    .blog-section-title,
+    .blog-page-title {
+        color: #fff;
+    }
+    
+    .blog-deal-description,
+    .blog-page-subtitle {
+        color: #ccc;
+    }
+    
+    .blog-deal-countdown {
+        background: #3d3d3d;
+    }
+    
+    .blog-deal-tag {
+        background: #444;
+        color: #ccc;
+    }
+}
+    </style>
+</head>
+<body>
+
+     <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="blog-deals-container">
+        <div class="blog-page-header">
+            <h1 class="blog-page-title">Current Deals</h1>
+            <p class="blog-page-subtitle">Explore our limited-time offers. Act fast before they're gone!</p>
+        </div>
+        
+        <div class="blog-deal-section">
+            <div class="blog-section-header">
+                <h2 class="blog-section-title">Active Deals</h2>
+                <div class="blog-section-line"></div>
+            </div>
+            
+            <div class="blog-deals-grid">
+                <div class="blog-deal-card">
+                    <div class="blog-deal-image">
+                        <img src="images/promotion (5).png" alt="Smart Watch">
+                        <div class="blog-deal-badge blog-badge-active">Hot Deal</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">Premium Smart Watch</h3>
+                        <p class="blog-deal-description">Advanced health tracking with 7-day battery life and always-on display.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$129.99</span>
+                            <span class="blog-original-price">$199.99</span>
+                            <span class="blog-discount">35% OFF</span>
+                        </div>
+                        <div class="blog-deal-countdown">
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">02</div>
+                                <div class="blog-countdown-label">Days</div>
+                            </div>
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">14</div>
+                                <div class="blog-countdown-label">Hrs</div>
+                            </div>
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">45</div>
+                                <div class="blog-countdown-label">Min</div>
+                            </div>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Electronics</span>
+                            <span class="blog-deal-tag">Wearables</span>
+                            <span class="blog-deal-tag">Best Seller</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="blog-deal-card">
+                    <div class="blog-deal-image">
+                        <img src="images/promotion (4).png" alt="Wireless Earbuds">
+                        <div class="blog-deal-badge blog-badge-expiring">Ending Soon</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">Noise Cancelling Earbuds</h3>
+                        <p class="blog-deal-description">Premium sound with active noise cancellation and 30hr battery life.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$79.99</span>
+                            <span class="blog-original-price">$129.99</span>
+                            <span class="blog-discount">38% OFF</span>
+                        </div>
+                        <div class="blog-deal-countdown">
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">00</div>
+                                <div class="blog-countdown-label">Days</div>
+                            </div>
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">06</div>
+                                <div class="blog-countdown-label">Hrs</div>
+                            </div>
+                            <div class="blog-countdown-item">
+                                <div class="blog-countdown-value">15</div>
+                                <div class="blog-countdown-label">Min</div>
+                            </div>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Audio</span>
+                            <span class="blog-deal-tag">Wireless</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="blog-deal-card">
+                    <div class="blog-deal-image">
+                        <img src="images/sho (2).png" alt="Running Shoes">
+                        <div class="blog-deal-badge blog-badge-active">Limited Stock</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">Pro Running Shoes</h3>
+                        <p class="blog-deal-description">Lightweight design with superior cushioning for maximum performance.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$89.99</span>
+                            <span class="blog-original-price">$149.99</span>
+                            <span class="blog-discount">40% OFF</span>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Fitness</span>
+                            <span class="blog-deal-tag">Footwear</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-deal-section">
+            <div class="blog-section-header">
+                <h2 class="blog-section-title">Coming Soon</h2>
+                <div class="blog-section-line"></div>
+            </div>
+            
+            <div class="blog-deals-grid">
+                <div class="blog-deal-card blog-coming-soon">
+                    <div class="blog-deal-image">
+                        <img src="images/11 (1).png" alt="Smartphone">
+                        <div class="blog-deal-badge blog-badge-coming">Coming Soon</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">Next-Gen Smartphone</h3>
+                        <p class="blog-deal-description">Revolutionary camera technology with pro-grade performance.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$899.99</span>
+                            <span class="blog-original-price">$1099.99</span>
+                            <span class="blog-discount">18% OFF</span>
+                        </div>
+                        <div class="blog-deal-meta">
+                            <div class="blog-deal-timer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Starts in 3 days</span>
+                            </div>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Flagship</span>
+                            <span class="blog-deal-tag">Pre-order</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Notify Me</a>
+                    </div>
+                </div>
+                
+                <div class="blog-deal-card blog-coming-soon">
+                    <div class="blog-deal-image">
+                        <img src="images/DSLR_camera_buying_guide_1721816125038.webp" alt="Camera">
+                        <div class="blog-deal-badge blog-badge-coming">Coming Soon</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">4K Mirrorless Camera</h3>
+                        <p class="blog-deal-description">Professional quality in a compact body with 4K video.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$699.99</span>
+                            <span class="blog-original-price">$899.99</span>
+                            <span class="blog-discount">22% OFF</span>
+                        </div>
+                        <div class="blog-deal-meta">
+                            <div class="blog-deal-timer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Starts in 5 days</span>
+                            </div>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Photography</span>
+                            <span class="blog-deal-tag">Vlogging</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Notify Me</a>
+                    </div>
+                </div>
+                
+                <div class="blog-deal-card blog-coming-soon">
+                    <div class="blog-deal-image">
+                        <img src="images/glass.jpg" alt="Sunglasses">
+                        <div class="blog-deal-badge blog-badge-coming">Coming Soon</div>
+                    </div>
+                    <div class="blog-deal-content">
+                        <h3 class="blog-deal-title">Designer Sunglasses</h3>
+                        <p class="blog-deal-description">Premium polarized lenses with 100% UV protection.</p>
+                        <div class="blog-deal-price">
+                            <span class="blog-current-price">$129.99</span>
+                            <span class="blog-original-price">$199.99</span>
+                            <span class="blog-discount">35% OFF</span>
+                        </div>
+                        <div class="blog-deal-meta">
+                            <div class="blog-deal-timer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Starts in 2 days</span>
+                            </div>
+                        </div>
+                        <div class="blog-deal-tags">
+                            <span class="blog-deal-tag">Fashion</span>
+                            <span class="blog-deal-tag">Summer</span>
+                        </div>
+                        <a href="#" class="blog-deal-cta">Notify Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+document.querySelectorAll('.blog-deal-cta').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const card = this.closest('.blog-deal-card');
+        const productName = card.querySelector('.blog-deal-title').textContent;
+        const dealStartsIn = card.querySelector('.blog-deal-timer span').textContent;
+
+        showProfessionalToast(
+            `We'll notify you when <strong>${productName}</strong> launches. ${dealStartsIn}.`
+        );
+    });
+});
+
+function showProfessionalToast(message) {
+    // Remove existing toasts
+    const oldToast = document.querySelector('.custom-notify-toast');
+    if (oldToast) oldToast.remove();
+
+    // Create toast
+    const toast = document.createElement('div');
+    toast.className = 'custom-notify-toast';
+    toast.innerHTML = `
+        ${message}
+        <button class="close-toast" aria-label="Close">×</button>
+    `;
+
+    document.body.appendChild(toast);
+
+    // Animate in
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    // Auto-dismiss after 5s
+    const autoClose = setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 5000);
+
+    // Manual close
+    toast.querySelector('.close-toast').addEventListener('click', () => {
+        clearTimeout(autoClose);
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    });
+}
+    </script>
+
+
+    <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

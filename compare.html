@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>TechNex | Premium Electronics Marketplace</title>
+    <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/content.css">
+   
+    <style>
+   :root {
+        --primaryD: #222;
+        --primary-darkD: #2222;
+        --secondaryD: #222;
+        --darkD: #212529;
+        --lightD: #f8f9fa;
+        --grayD: #6c757d;
+        --light-grayD: #e9ecef;
+        --dangerD: #ef233c;
+        --successD: #4cc9f0;
+        --warningD: #f8961e;
+        --infoD: #4895ef;
+        --bg-gradientD: linear-gradient(135deg, #222 0%, #222 100%);
+        --card-shadowD: 0 10px 20px rgba(0,0,0,0.08);
+        --hover-shadowD: 0 15px 30px rgba(0,0,0,0.12);
+    }
+
+    bodyD {
+        background-color: #f5f7ff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+    }
+
+    .containerD {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        margin-top: 200px;
+    }
+    
+    /* Comparison Header */
+    .compare-headerD {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .compare-headerD::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 120px;
+        height: 3px;
+        background: var(--bg-gradientD);
+        border-radius: 3px 3px 0 0;
+    }
+    
+    .compare-titleD {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--darkD);
+        background: var(--bg-gradientD);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+    
+    .compare-actionsD {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .btnD {
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .btnD i {
+        font-size: 1rem;
+    }
+    
+    .btn-primaryD {
+        background: var(--bg-gradientD);
+        color: white;
+        border: none;
+    }
+    
+    .btn-primaryD:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .btn-outlineD {
+        background-color: transparent;
+        border: 2px solid var(--primaryD);
+        color: var(--primaryD);
+    }
+    
+    .btn-outlineD:hover {
+        background-color: var(--primaryD);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .btn-dangerD {
+        background-color: var(--dangerD);
+        color: white;
+        border: none;
+    }
+    
+    .btn-dangerD:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(239, 35, 60, 0.3);
+    }
+    
+    /* Comparison Container */
+    .comparison-containerD {
+        background: white;
+        border-radius: 12px;
+        box-shadow: var(--card-shadowD);
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .comparison-containerD:hover {
+        box-shadow: var(--hover-shadowD);
+    }
+    
+    .loading-overlayD {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255,255,255,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        display: none;
+    }
+    
+    .spinnerD {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(67, 97, 238, 0.1);
+        border-radius: 50%;
+        border-top-color: var(--primaryD);
+        animation: spinD 1s ease-in-out infinite;
+    }
+    
+    @keyframes spinD {
+        to { transform: rotate(360deg); }
+    }
+    
+    .comparison-tableD {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        
+    }
+    
+    .comparison-tableD th, 
+    .comparison-tableD td {
+        padding: 1.5rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .comparison-tableD th {
+        background-color: #f8fafc;
+        font-weight: 600;
+        color: #555;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .product-headerD {
+        vertical-align: top;
+        width: 280px;
+        position: relative;
+        background: white;
+    }
+    
+    .remove-productD {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: var(--grayD);
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .remove-productD:hover {
+        color: white;
+        background-color: var(--dangerD);
+        transform: rotate(90deg);
+    }
+    
+    .product-image-containerD {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        transition: all 0.3s;
+    }
+    
+    .product-imageD {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .product-imageD:hover {
+        transform: scale(1.1);
+    }
+    
+    .product-nameD {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        color: var(--darkD);
+    }
+    
+    .product-priceD {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primaryD);
+        margin-bottom: 1.2rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .product-priceD::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--bg-gradientD);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+    }
+    
+    .product-headerD:hover .product-priceD::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    
+    .product-ratingD {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .starsD {
+        color: #ffc107;
+        font-size: 1.1rem;
+    }
+    
+    .rating-countD {
+        color: var(--grayD);
+        font-size: 0.9rem;
+    }
+    
+    .btn-add-to-cartD {
+        width: 100%;
+        padding: 0.8rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s;
+        background: var(--bg-gradientD);
+        color: white;
+        border: none;
+        font-size: 0.95rem;
+    }
+    
+    .btn-add-to-cartD:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .spec-nameD {
+        text-align: left;
+        font-weight: 600;
+        color: #555;
+        background-color: #f8fafc;
+        width: 220px;
+        padding-left: 2rem;
+    }
+    
+    .spec-valueD {
+        font-weight: 500;
+        position: relative;
+    }
+    
+    .highlightD {
+        background-color: rgba(67, 97, 238, 0.05);
+        position: relative;
+        border-left: 3px solid var(--primaryD);
+    }
+    
+    .highlightD::after {
+        content: "Best Choice";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: var(--bg-gradientD);
+        color: white;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        font-weight: 600;
+    }
+    
+    .add-product-cellD {
+        height: 400px;
+        vertical-align: middle;
+    }
+    
+    .add-productD {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 2rem;
+        border: 2px dashed rgba(67, 97, 238, 0.3);
+        border-radius: 12px;
+        transition: all 0.3s;
+        cursor: pointer;
+        background: rgba(67, 97, 238, 0.03);
+    }
+    
+    .add-productD:hover {
+        border-color: var(--primaryD);
+        background: rgba(67, 97, 238, 0.08);
+        transform: translateY(-3px);
+    }
+    
+    .add-product-iconD {
+        width: 70px;
+        height: 70px;
+        background: rgba(67, 97, 238, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--primaryD);
+        font-size: 1.8rem;
+        transition: all 0.3s;
+    }
+    
+    .add-productD:hover .add-product-iconD {
+        background: var(--bg-gradientD);
+        color: white;
+        transform: scale(1.1);
+    }
+    
+    .add-product-textD {
+        font-weight: 600;
+        color: var(--grayD);
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    
+    /* Comparison Features */
+    .feature-groupD {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .feature-group-titleD {
+        padding: 1.2rem 2rem;
+        background-color: #f8fafc;
+        font-weight: 700;
+        color: #444;
+        text-align: left;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    
+    /* Product Selector Modal */
+    .modal-overlayD {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        display: none;
+        backdrop-filter: blur(5px);
+    }
+    
+    .product-selector-modalD {
+        background-color: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 1200px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        animation: modalFadeInD 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    @keyframes modalFadeInD {
+        from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    .modal-headerD {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 10;
+    }
+    
+    .modal-titleD {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--darkD);
+    }
+    
+    .close-modalD {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--grayD);
+        transition: all 0.3s;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .close-modalD:hover {
+        color: var(--dangerD);
+        background: rgba(239, 35, 60, 0.1);
+    }
+    
+    .modal-bodyD {
+        padding: 2rem;
+    }
+    
+    .product-filtersD {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .filter-selectD {
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.1);
+        background-color: white;
+        min-width: 200px;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+    }
+    
+    .filter-selectD:focus {
+        outline: none;
+        border-color: var(--primaryD);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    #searchFilterD {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .product-gridD {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .product-cardD {
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+        background: white;
+    }
+    
+    .product-cardD:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--hover-shadowD);
+        border-color: rgba(67, 97, 238, 0.2);
+    }
+    
+    .product-card-imgD {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background-color: #f9f9f9;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .product-card-imgD::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--bg-gradientD);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .product-cardD:hover .product-card-imgD::before {
+        transform: scaleX(1);
+    }
+    
+    .product-card-imgD img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .product-cardD:hover .product-card-imgD img {
+        transform: scale(1.1);
+    }
+    
+    .product-card-bodyD {
+        padding: 1.5rem;
+    }
+    
+    .product-card-titleD {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        color: var(--darkD);
+    }
+    
+    .product-card-priceD {
+        color: var(--primaryD);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+    
+    .product-card-ratingD {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .product-card-actionsD {
+        display: flex;
+        gap: 0.8rem;
+    }
+    
+    .btn-compareD {
+        flex: 1;
+        padding: 0.8rem;
+        background: var(--bg-gradientD);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+    
+    .btn-compareD:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .btn-viewD {
+        flex: 1;
+        padding: 0.8rem;
+        background-color: white;
+        border: 2px solid var(--primaryD);
+        color: var(--primaryD);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+    
+    .btn-viewD:hover {
+        background-color: var(--primaryD);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    /* Color Options */
+    .color-optionsD {
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+    
+    .color-optionD {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .color-optionD:hover {
+        transform: scale(1.15);
+    }
+    
+    .color-optionD.selected {
+        box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primaryD);
+    }
+    
+    /* Recommendation Section */
+    .recommendation-sectionD {
+        margin-top: 3rem;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadowD);
+        transition: all 0.3s;
+    }
+    
+    .recommendation-sectionD:hover {
+        box-shadow: var(--hover-shadowD);
+    }
+    
+    .recommendation-headerD {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--darkD);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .recommendation-headerD i {
+        font-size: 1.8rem;
+        color: var(--warningD);
+    }
+    
+    .recommendation-contentD {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .recommendation-image-containerD {
+        flex: 0 0 300px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .recommendation-image-containerD::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--bg-gradientD);
+    }
+    
+    #recommendationImageD {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+    }
+    
+    .recommendation-image-containerD:hover #recommendationImageD {
+        transform: scale(1.1);
+    }
+    
+    .recommendation-detailsD {
+        flex: 1;
+    }
+    
+    #recommendationTitleD {
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--darkD);
+    }
+    
+    #recommendationPriceD {
+        color: var(--primaryD);
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #recommendationTextD {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+    }
+    
+    .recommendation-reasonsD {
+        flex: 1;
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 12px;
+    }
+    
+    .recommendation-reasonsD h4 {
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #444;
+        font-size: 1.1rem;
+    }
+    
+    #recommendationReasonsD {
+        list-style-type: none;
+    }
+    
+    #recommendationReasonsD li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2rem;
+        color: #555;
+    }
+    
+    #recommendationReasonsD li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--successD);
+        font-weight: bold;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .product-headerD {
+            width: 240px;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .comparison-containerD {
+            overflow-x: auto;
+        }
+        
+        .comparison-tableD {
+            min-width: 800px;
+        }
+        
+        .product-gridD {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+        
+        .recommendation-contentD {
+            flex-direction: column;
+        }
+        
+        .recommendation-image-containerD {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .compare-headerD {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        
+        .compare-titleD {
+            font-size: 1.8rem;
+        }
+        
+        .compare-actionsD {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .btnD {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .product-filtersD {
+            flex-direction: column;
+        }
+        
+        .filter-selectD {
+            width: 100%;
+        }
+    }
+    
+    /* Print Styles */
+    @media print {
+        bodyD {
+            background: white;
+            color: black;
+            font-size: 12pt;
+        }
+        
+        .containerD {
+            padding: 0;
+        }
+        
+        .compare-actionsD, .remove-productD, .add-product-cellD {
+            display: none !important;
+        }
+        
+        .comparison-containerD, .recommendation-sectionD {
+            box-shadow: none;
+            border: 1px solid #ddd;
+            break-inside: avoid;
+        }
+        
+        .recommendation-sectionD {
+            page-break-before: always;
+        }
+        
+        .btn-add-to-cartD {
+            display: none;
+        }
+    }
+
+
+
+    /* Responsive Styles */
+@media (max-width: 1200px) {
+    .product-headerD {
+        width: 240px;
+    }
+    
+    .spec-nameD {
+        width: 200px;
+        padding-left: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .containerD {
+        padding: 1rem;
+        margin-top: 150px;
+    }
+    
+    .comparison-containerD {
+        overflow-x: auto;
+        border-radius: 8px;
+    }
+    
+    .comparison-tableD {
+        min-width: 800px;
+    }
+    
+    .product-gridD {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+    
+    .recommendation-contentD {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .recommendation-image-containerD {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 180px;
+    }
+    
+    .product-filtersD {
+        flex-wrap: wrap;
+    }
+    
+    .filter-selectD {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .containerD {
+        margin-top: 120px;
+        padding: 0.5rem;
+    }
+    
+    .compare-headerD {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+    }
+    
+    .compare-titleD {
+        font-size: 1.8rem;
+    }
+    
+    .compare-actionsD {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .btnD {
+        flex: 1;
+        min-width: 120px;
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .comparison-tableD th, 
+    .comparison-tableD td {
+        padding: 1rem 0.8rem;
+    }
+    
+    .product-image-containerD {
+        height: 150px;
+        margin-bottom: 1rem;
+    }
+    
+    .product-nameD {
+        font-size: 1.1rem;
+    }
+    
+    .product-priceD {
+        font-size: 1.2rem;
+    }
+    
+    .modal-bodyD {
+        padding: 1.5rem;
+    }
+    
+    .product-selector-modalD {
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-headerD {
+        padding: 1rem 1.5rem;
+    }
+    
+    .modal-titleD {
+        font-size: 1.3rem;
+    }
+    
+    .product-filtersD {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .filter-selectD {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .product-gridD {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .recommendation-sectionD {
+        margin-top: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .recommendation-headerD {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .recommendation-detailsD {
+        text-align: center;
+    }
+    
+    .recommendation-reasonsD {
+        padding: 1.5rem;
+    }
+    
+    .spec-nameD {
+        width: 180px;
+        padding-left: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .feature-group-titleD {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .containerD {
+        margin-top: 100px;
+    }
+    
+    .compare-titleD {
+        font-size: 1.5rem;
+    }
+    
+    .compare-actionsD {
+        flex-direction: column;
+    }
+    
+    .btnD {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .product-gridD {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .product-cardD {
+        margin-bottom: 0;
+    }
+    
+    .comparison-tableD th, 
+    .comparison-tableD td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .product-headerD {
+        width: 200px;
+    }
+    
+    .product-image-containerD {
+        height: 120px;
+    }
+    
+    .product-nameD {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-priceD {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .product-ratingD {
+        margin-bottom: 1rem;
+    }
+    
+    .starsD {
+        font-size: 1rem;
+    }
+    
+    .btn-add-to-cartD {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .spec-nameD {
+        width: 150px;
+        padding-left: 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .feature-group-titleD {
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .recommendation-sectionD {
+        padding: 1rem;
+    }
+    
+    .recommendation-headerD {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .recommendation-contentD {
+        gap: 1rem;
+    }
+    
+    .recommendation-image-containerD {
+        height: 150px;
+    }
+    
+    .recommendation-detailsD {
+        text-align: center;
+    }
+    
+    .recommendation-reasonsD {
+        padding: 1rem;
+    }
+    
+    .recommendation-reasonsD h4 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    #recommendationReasonsD li {
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-bodyD {
+        padding: 1rem;
+    }
+    
+    .product-selector-modalD {
+        width: 98%;
+        max-height: 80vh;
+    }
+    
+    .modal-headerD {
+        padding: 1rem;
+    }
+    
+    .modal-titleD {
+        font-size: 1.2rem;
+    }
+    
+    .close-modalD {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+    }
+    
+    .add-product-iconD {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .add-product-textD {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .containerD {
+        margin-top: 80px;
+    }
+    
+    .compare-titleD {
+        font-size: 1.3rem;
+    }
+    
+    .comparison-tableD {
+        min-width: 700px;
+    }
+    
+    .product-headerD {
+        width: 180px;
+    }
+    
+    .spec-nameD {
+        width: 130px;
+        padding-left: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .product-image-containerD {
+        height: 100px;
+    }
+    
+    .product-nameD {
+        font-size: 0.9rem;
+    }
+    
+    .product-priceD {
+        font-size: 1rem;
+    }
+    
+    .btn-add-to-cartD {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+    
+    .product-card-bodyD {
+        padding: 1rem;
+    }
+    
+    .product-card-titleD {
+        font-size: 1rem;
+    }
+    
+    .product-card-priceD {
+        font-size: 1.1rem;
+    }
+    
+    .product-card-actionsD {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btn-compareD, 
+    .btn-viewD {
+        width: 100%;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .containerD {
+        margin-top: 100px;
+    }
+    
+    .product-selector-modalD {
+        max-height: 70vh;
+    }
+    
+    .product-gridD {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* High-resolution devices */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .comparison-tableD th, 
+    .comparison-tableD td {
+        border-bottom-width: 0.5px;
+    }
+}
+
+/* Print optimization for mobile */
+@media print and (max-width: 768px) {
+    .containerD {
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .comparison-containerD {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .comparison-tableD {
+        min-width: auto;
+    }
+}
+    </style>
+</head>
+<body>
+
+
+ <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+<div class="containerD">
+    <!-- Comparison Header -->
+    <div class="compare-headerD">
+        <h1 class="compare-titleD">Product Comparison</h1>
+        <div class="compare-actionsD">
+            <button class="btnD btn-outlineD" id="addProductBtnD">
+                <i class="fas fa-plus"></i> Add Product
+            </button>
+            <button class="btnD btn-dangerD" id="clearAllBtnD">
+                <i class="fas fa-trash"></i> Clear All
+            </button>
+            <button class="btnD btn-primaryD" id="printBtnD">
+                <i class="fas fa-print"></i> Print
+            </button>
+        </div>
+    </div>
+    
+    <!-- Comparison Table -->
+    <div class="comparison-containerD">
+        <div class="loading-overlayD" id="loadingOverlayD">
+            <div class="spinnerD"></div>
+            <span style="margin-left: 1rem; font-weight: 600; color: var(--primaryD);">Loading comparison...</span>
+        </div>
+        
+        <table class="comparison-tableD" id="comparisonTableD">
+            <!-- Product Headers -->
+            <thead>
+                <tr>
+                    <th class="product-headerD"></th>
+                    <!-- Products will be dynamically inserted here -->
+                    <th class="product-headerD add-product-cellD" id="addProductCellD">
+                        <div class="add-productD" id="addProductBtn2D">
+                            <div class="add-product-iconD">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <p class="add-product-textD">Click to add another product</p>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            
+            <!-- Specifications -->
+            <tbody id="specsBodyD">
+                <!-- Content will be dynamically generated -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Recommendation Section -->
+    <div class="recommendation-sectionD" id="recommendationSectionD" style="display: none;">
+        <h3 class="recommendation-headerD">
+            <i class="fas fa-award"></i> Our Expert Recommendation
+        </h3>
+        <div class="recommendation-contentD">
+            <div class="recommendation-detailsD">
+                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="recommendation-image-containerD">
+                        <img id="recommendationImageD" src="" alt="Recommended Product">
+                    </div>
+                    <div>
+                        <h4 id="recommendationTitleD" style="font-weight: 600; margin-bottom: 0.5rem;"></h4>
+                        <div id="recommendationPriceD" style="color: var(--primaryD); font-weight: 700; font-size: 1.3rem;"></div>
+                    </div>
+                </div>
+                <p id="recommendationTextD" style="color: #555; line-height: 1.7; margin-bottom: 1.5rem;"></p>
+                <button class="btnD btn-primaryD" style="width: auto; padding: 0.8rem 2rem; font-size: 1rem;">
+                    <i class="fas fa-shopping-cart"></i> Buy Now
+                </button>
+            </div>
+            <div class="recommendation-reasonsD">
+                <h4>Why we recommend this product:</h4>
+                <ul id="recommendationReasonsD"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Selector Modal -->
+<div class="modal-overlayD" id="productModalD">
+    <div class="product-selector-modalD">
+        <div class="modal-headerD">
+            <h3 class="modal-titleD">Add Products to Compare</h3>
+            <button class="close-modalD" id="closeModalD">&times;</button>
+        </div>
+        <div class="modal-bodyD">
+            <div class="product-filtersD">
+                <select class="filter-selectD" id="categoryFilterD">
+                    <option value="">All Categories</option>
+                    <option value="laptops">Laptops</option>
+                    <option value="smartphones">Smartphones</option>
+                    <option value="tablets">Tablets</option>
+                    <option value="audio">Audio</option>
+                    <option value="wearables">Wearables</option>
+                </select>
+                <select class="filter-selectD" id="brandFilterD">
+                    <option value="">All Brands</option>
+                    <option value="apple">Apple</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="dell">Dell</option>
+                    <option value="hp">HP</option>
+                    <option value="sony">Sony</option>
+                </select>
+                <select class="filter-selectD" id="priceFilterD">
+                    <option value="">All Price Ranges</option>
+                    <option value="0-500">Under $500</option>
+                    <option value="500-1000">$500 - $1000</option>
+                    <option value="1000-1500">$1000 - $1500</option>
+                    <option value="1500-2000">$1500 - $2000</option>
+                    <option value="2000-">Over $2000</option>
+                </select>
+                <input type="text" class="filter-selectD" id="searchFilterD" placeholder="Search products...">
+            </div>
+            <div class="product-gridD" id="productGridD">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+   <script>
+        // Sample product data
+        const productsD = {
+            laptopsD: [
+                {
+                    idD: 'lp1D',
+                    nameD: 'MacBook Pro 14" M2 Pro',
+                    priceD: 1999,
+                    imageD: 'https://m.media-amazon.com/images/I/61l9ppRIiqL._AC_SL1500_.jpg',
+                    brandD: 'appleD',
+                    categoryD: 'laptopsD',
+                    ratingD: 4.5,
+                    ratingCountD: 128,
+                    colorsD: ['#333', '#a7a7a7'],
+                    specsD: {
+                        processorD: 'Apple M2 Pro (10-core CPU)',
+                        gpuD: '16-core GPU',
+                        ramD: '16GB unified',
+                        storageD: '512GB SSD',
+                        displaySizeD: '14.2"',
+                        displayResD: '3024×1964 (Retina)',
+                        displayTypeD: 'Liquid Retina XDR',
+                        refreshRateD: 'ProMotion 120Hz',
+                        batteryLifeD: 'Up to 17 hours',
+                        chargingD: 'MagSafe 3',
+                        portsD: '3× Thunderbolt 4, HDMI, SDXC',
+                        wirelessD: 'Wi-Fi 6E, Bluetooth 5.3',
+                        weightD: '3.5 lbs (1.6 kg)',
+                        thicknessD: '0.61" (15.5 mm)',
+                        osD: 'macOS Ventura',
+                        keyboardD: 'Backlit Magic Keyboard',
+                        touchscreenD: 'No',
+                        biometricsD: 'Touch ID',
+                        speakersD: '6-speaker system with force-cancelling woofers',
+                        warrantyD: '1 year limited'
+                    },
+                    recommendationD: {
+                        textD: "Based on your comparison, we recommend the MacBook Pro 14\" for its superior performance, best-in-class display, and unmatched battery life. It's the ideal choice for creative professionals and power users who need a portable yet powerful machine.",
+                        reasonsD: [
+                            "Best performance with Apple M2 Pro chip",
+                            "Stunning XDR display with ProMotion",
+                            "Longest battery life (up to 17 hours)",
+                            "Premium build quality and macOS ecosystem"
+                        ]
+                    }
+                },
+                {
+                    idD: 'lp2D',
+                    nameD: 'Dell XPS 15 9520',
+                    priceD: 1799,
+                    imageD: 'https://m.media-amazon.com/images/I/71S4sIPFvBL._AC_SL1500_.jpg',
+                    brandD: 'dellD',
+                    categoryD: 'laptopsD',
+                    ratingD: 4.2,
+                    ratingCountD: 94,
+                    colorsD: ['#a7a7a7'],
+                    specsD: {
+                        processorD: 'Intel Core i7-12700H (14-core)',
+                        gpuD: 'NVIDIA RTX 3050 Ti (4GB)',
+                        ramD: '32GB DDR5',
+                        storageD: '1TB SSD',
+                        displaySizeD: '15.6"',
+                        displayResD: '3840×2400 (4K)',
+                        displayTypeD: 'OLED Touch',
+                        refreshRateD: '60Hz',
+                        batteryLifeD: 'Up to 8 hours',
+                        chargingD: 'USB-C',
+                        portsD: '2× Thunderbolt 4, USB-C, SD card',
+                        wirelessD: 'Wi-Fi 6, Bluetooth 5.2',
+                        weightD: '4.2 lbs (1.9 kg)',
+                        thicknessD: '0.71" (18 mm)',
+                        osD: 'Windows 11 Pro',
+                        keyboardD: 'Backlit with number pad',
+                        touchscreenD: 'Yes',
+                        biometricsD: 'Fingerprint + Windows Hello',
+                        speakersD: 'Quad speakers with Waves MaxxAudio',
+                        warrantyD: '2 years premium support'
+                    }
+                },
+                {
+                    idD: 'lp3D',
+                    nameD: 'HP Spectre x360 14',
+                    priceD: 1649.99,
+                    imageD: 'https://m.media-amazon.com/images/I/71p-M3sPhhL._AC_SL1500_.jpg',
+                    brandD: 'hpD',
+                    categoryD: 'laptopsD',
+                    ratingD: 4.7,
+                    ratingCountD: 156,
+                    colorsD: ['#1a365d', '#c0b3a0'],
+                    specsD: {
+                        processorD: 'Intel Core i7-1255U (10-core)',
+                        gpuD: 'Intel Iris Xe Graphics',
+                        ramD: '16GB LPDDR4x',
+                        storageD: '512GB SSD',
+                        displaySizeD: '13.5"',
+                        displayResD: '3000×2000 (3K2K)',
+                        displayTypeD: 'OLED Touch (360° hinge)',
+                        refreshRateD: '60Hz',
+                        batteryLifeD: 'Up to 12 hours',
+                        chargingD: 'USB-C (Fast Charge)',
+                        portsD: '2× Thunderbolt 4, USB-A, headphone',
+                        wirelessD: 'Wi-Fi 6E, Bluetooth 5.2',
+                        weightD: '3.0 lbs (1.4 kg)',
+                        thicknessD: '0.59" (15 mm)',
+                        osD: 'Windows 11 Home',
+                        keyboardD: 'Backlit',
+                        touchscreenD: 'Yes (360° convertible)',
+                        biometricsD: 'Fingerprint + IR camera',
+                        speakersD: 'Quad speakers by Bang & Olufsen',
+                        warrantyD: '1 year limited'
+                    }
+                }
+            ],
+            smartphonesD: [
+                {
+                    idD: 'sp1D',
+                    nameD: 'iPhone 15 Pro',
+                    priceD: 999,
+                    imageD: 'https://m.media-amazon.com/images/I/81Os1SDWpcL._AC_SL1500_.jpg',
+                    brandD: 'appleD',
+                    categoryD: 'smartphonesD',
+                    ratingD: 4.8,
+                    ratingCountD: 342,
+                    colorsD: ['#4e4e50', '#f5ddc5', '#36454f', '#a6192e'],
+                    specsD: {
+                        processorD: 'A17 Pro',
+                        gpuD: '6-core GPU',
+                        ramD: '8GB',
+                        storageD: '128GB',
+                        displaySizeD: '6.1"',
+                        displayResD: '2556×1179',
+                        displayTypeD: 'Super Retina XDR',
+                        refreshRateD: 'ProMotion 120Hz',
+                        batteryLifeD: 'Up to 23 hours',
+                        chargingD: 'USB-C',
+                        wirelessD: 'Wi-Fi 6E, Bluetooth 5.3',
+                        weightD: '6.60 oz (187 g)',
+                        thicknessD: '0.32" (8.25 mm)',
+                        osD: 'iOS 17',
+                        biometricsD: 'Face ID',
+                        camerasD: '48MP Main + 12MP Ultra Wide + 12MP Telephoto',
+                        waterResistanceD: 'IP68',
+                        warrantyD: '1 year limited'
+                    }
+                },
+                {
+                    idD: 'sp2D',
+                    nameD: 'Samsung Galaxy S23 Ultra',
+                    priceD: 1199.99,
+                    imageD: 'images/ultras.png',
+                    brandD: 'samsungD',
+                    categoryD: 'smartphonesD',
+                    ratingD: 4.6,
+                    ratingCountD: 287,
+                    colorsD: ['#2d241e', '#f0f0f0', '#5a6b81', '#5a3a2e'],
+                    specsD: {
+                        processorD: 'Snapdragon 8 Gen 2',
+                        gpuD: 'Adreno 740',
+                        ramD: '12GB',
+                        storageD: '256GB',
+                        displaySizeD: '6.8"',
+                        displayResD: '3088×1440',
+                        displayTypeD: 'Dynamic AMOLED 2X',
+                        refreshRateD: '120Hz',
+                        batteryLifeD: 'Up to 22 hours',
+                        chargingD: 'USB-C',
+                        wirelessD: 'Wi-Fi 6E, Bluetooth 5.3',
+                        weightD: '8.25 oz (234 g)',
+                        thicknessD: '0.35" (8.9 mm)',
+                        osD: 'Android 13',
+                        biometricsD: 'Ultrasonic Fingerprint + Face Recognition',
+                        camerasD: '200MP Main + 12MP Ultra Wide + 10MP Telephoto (3x) + 10MP Telephoto (10x)',
+                        waterResistanceD: 'IP68',
+                        warrantyD: '1 year limited'
+                    }
+                }
+            ]
+        };
+
+    // Current comparison state
+    let comparisonStateD = {
+        productsD: [],
+        maxProductsD: 4
+    };
+
+    // DOM elements
+    const elementsD = {
+        comparisonTableD: document.getElementById('comparisonTableD'),
+        specsBodyD: document.getElementById('specsBodyD'),
+        addProductCellD: document.getElementById('addProductCellD'),
+        addProductBtnD: document.getElementById('addProductBtnD'),
+        addProductBtn2D: document.getElementById('addProductBtn2D'),
+        clearAllBtnD: document.getElementById('clearAllBtnD'),
+        printBtnD: document.getElementById('printBtnD'),
+        productModalD: document.getElementById('productModalD'),
+        closeModalD: document.getElementById('closeModalD'),
+        productGridD: document.getElementById('productGridD'),
+        categoryFilterD: document.getElementById('categoryFilterD'),
+        brandFilterD: document.getElementById('brandFilterD'),
+        priceFilterD: document.getElementById('priceFilterD'),
+        searchFilterD: document.getElementById('searchFilterD'),
+        loadingOverlayD: document.getElementById('loadingOverlayD'),
+        recommendationSectionD: document.getElementById('recommendationSectionD'),
+        recommendationImageD: document.getElementById('recommendationImageD'),
+        recommendationTitleD: document.getElementById('recommendationTitleD'),
+        recommendationPriceD: document.getElementById('recommendationPriceD'),
+        recommendationTextD: document.getElementById('recommendationTextD'),
+        recommendationReasonsD: document.getElementById('recommendationReasonsD')
+    };
+
+    // Initialize the page
+    function initD() {
+        // Load initial products if any (could be from URL params)
+        const initialProductsD = getInitialProductsD();
+        if (initialProductsD.length > 0) {
+            comparisonStateD.productsD = initialProductsD;
+            renderComparisonTableD();
+        }
+        
+        // Set up event listeners
+        setupEventListenersD();
+    }
+
+    // Get initial products from URL or default
+    function getInitialProductsD() {
+        // In a real app, you might get these from URL parameters
+        // For now, we'll use the first 2 laptops as default
+        return [
+            productsD.laptopsD[0],
+            productsD.laptopsD[1]
+        ];
+    }
+
+    // Set up all event listeners
+    function setupEventListenersD() {
+        // Add product buttons
+        elementsD.addProductBtnD.addEventListener('click', openProductModalD);
+        elementsD.addProductBtn2D.addEventListener('click', openProductModalD);
+        
+        // Clear all button
+        elementsD.clearAllBtnD.addEventListener('click', clearAllProductsD);
+        
+        // Print button
+        elementsD.printBtnD.addEventListener('click', () => window.print());
+        
+        // Modal controls
+        elementsD.closeModalD.addEventListener('click', closeProductModalD);
+        
+        // Filter controls
+        elementsD.categoryFilterD.addEventListener('change', filterProductsD);
+        elementsD.brandFilterD.addEventListener('change', filterProductsD);
+        elementsD.priceFilterD.addEventListener('change', filterProductsD);
+        elementsD.searchFilterD.addEventListener('input', filterProductsD);
+        
+        // Close modal when clicking outside
+        elementsD.productModalD.addEventListener('click', (e) => {
+            if (e.target === elementsD.productModalD) {
+                closeProductModalD();
+            }
+        });
+    }
+
+    // Open the product selection modal
+    function openProductModalD() {
+        elementsD.productModalD.style.display = 'flex';
+        populateProductGridD();
+    }
+
+    // Close the product selection modal
+    function closeProductModalD() {
+        elementsD.productModalD.style.display = 'none';
+    }
+
+    // Populate the product grid with filtered products
+    function populateProductGridD(filterD = {}) {
+        elementsD.productGridD.innerHTML = '';
+        
+        // Get all products that match filters
+        let filteredProductsD = [];
+        
+        // Check each category
+        Object.keys(productsD).forEach(categoryD => {
+            if (filterD.categoryD && filterD.categoryD !== categoryD) return;
+            
+            productsD[categoryD].forEach(productD => {
+                // Check brand filter
+                if (filterD.brandD && productD.brandD !== filterD.brandD) return;
+                
+                // Check price filter
+                if (filterD.priceD) {
+                    const [minD, maxD] = filterD.priceD.split('-').map(Number);
+                    if ((minD && productD.priceD < minD) || (maxD && productD.priceD > maxD)) return;
+                }
+                
+                // Check search filter
+                if (filterD.searchD) {
+                    const searchTermD = filterD.searchD.toLowerCase();
+                    if (!productD.nameD.toLowerCase().includes(searchTermD) && 
+                        !productD.brandD.toLowerCase().includes(searchTermD)) return;
+                }
+                
+                // Skip products already in comparison
+                if (comparisonStateD.productsD.some(pD => pD.idD === productD.idD)) return;
+                
+                filteredProductsD.push(productD);
+            });
+        });
+        
+        // Display products
+        if (filteredProductsD.length === 0) {
+            elementsD.productGridD.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;">No products match your filters</p>';
+            return;
+        }
+        
+        filteredProductsD.forEach(productD => {
+            const productCardD = document.createElement('div');
+            productCardD.className = 'product-cardD';
+            productCardD.innerHTML = `
+                <div class="product-card-imgD">
+                    <img src="${productD.imageD}" alt="${productD.nameD}">
+                </div>
+                <div class="product-card-bodyD">
+                    <h4 class="product-card-titleD">${productD.nameD}</h4>
+                    <div class="product-card-priceD">$${productD.priceD.toLocaleString()}</div>
+                    <div class="product-card-ratingD">
+                        <div class="starsD">
+                            ${renderStarsD(productD.ratingD)}
+                        </div>
+                        <span>(${productD.ratingCountD})</span>
+                    </div>
+                    <div class="product-card-actionsD">
+                        <button class="btn-compareD" data-id="${productD.idD}">Compare</button>
+                        <button class="btn-viewD">View</button>
+                    </div>
+                </div>
+            `;
+            elementsD.productGridD.appendChild(productCardD);
+            
+            // Add event listener to compare button
+            productCardD.querySelector('.btn-compareD').addEventListener('click', () => {
+                addProductToComparisonD(productD.idD);
+            });
+        });
+    }
+
+    // Render star rating
+    function renderStarsD(ratingD) {
+        let starsD = '';
+        const fullStarsD = Math.floor(ratingD);
+        const hasHalfStarD = ratingD % 1 >= 0.5;
+        
+        for (let i = 0; i < fullStarsD; i++) {
+            starsD += '<i class="fas fa-star"></i>';
+        }
+        
+        if (hasHalfStarD) {
+            starsD += '<i class="fas fa-star-half-alt"></i>';
+        }
+        
+        const emptyStarsD = 5 - fullStarsD - (hasHalfStarD ? 1 : 0);
+        for (let i = 0; i < emptyStarsD; i++) {
+            starsD += '<i class="far fa-star"></i>';
+        }
+        
+        return starsD;
+    }
+
+    // Filter products based on selected filters
+    function filterProductsD() {
+        const filtersD = {
+            categoryD: elementsD.categoryFilterD.value,
+            brandD: elementsD.brandFilterD.value,
+            priceD: elementsD.priceFilterD.value,
+            searchD: elementsD.searchFilterD.value.toLowerCase()
+        };
+        
+        populateProductGridD(filtersD);
+    }
+
+    // Add a product to the comparison
+    function addProductToComparisonD(productIdD) {
+        // Find the product
+        let productToAddD = null;
+        
+        Object.keys(productsD).forEach(categoryD => {
+            productsD[categoryD].forEach(productD => {
+                if (productD.idD === productIdD) {
+                    productToAddD = productD;
+                }
+            });
+        });
+        
+        if (!productToAddD) return;
+        
+        // Check if already in comparison
+        if (comparisonStateD.productsD.some(pD => pD.idD === productIdD)) {
+            alert('This product is already in your comparison');
+            return;
+        }
+        
+        // Check if reached max products
+        if (comparisonStateD.productsD.length >= comparisonStateD.maxProductsD) {
+            alert(`You can compare up to ${comparisonStateD.maxProductsD} products at a time`);
+            return;
+        }
+        
+        // Add to comparison
+        comparisonStateD.productsD.push(productToAddD);
+        
+        // Close modal and update view
+        closeProductModalD();
+        renderComparisonTableD();
+        
+        // Update URL (in a real app)
+        updateURLD();
+    }
+
+    // Remove a product from comparison
+    function removeProductFromComparisonD(productIdD) {
+        comparisonStateD.productsD = comparisonStateD.productsD.filter(pD => pD.idD !== productIdD);
+        renderComparisonTableD();
+        updateURLD();
+    }
+
+    // Clear all products from comparison
+    function clearAllProductsD() {
+        if (comparisonStateD.productsD.length === 0) return;
+        
+        if (confirm('Are you sure you want to clear all products from comparison?')) {
+            comparisonStateD.productsD = [];
+            renderComparisonTableD();
+            updateURLD();
+        }
+    }
+
+    // Render the comparison table
+    function renderComparisonTableD() {
+        elementsD.loadingOverlayD.style.display = 'flex';
+        
+        // Use requestAnimationFrame to ensure smooth rendering
+        requestAnimationFrame(() => {
+            try {
+                // Clear existing content
+                const theadD = elementsD.comparisonTableD.querySelector('thead');
+                const tbodyD = elementsD.comparisonTableD.querySelector('tbody');
+                
+                // Keep only the first header cell (for specs)
+                const firstHeaderCellD = theadD.querySelector('th:first-child');
+                theadD.innerHTML = '';
+                theadD.appendChild(firstHeaderCellD);
+                
+                // Add product headers
+                comparisonStateD.productsD.forEach(productD => {
+                    const headerCellD = document.createElement('th');
+                    headerCellD.className = 'product-headerD';
+                    headerCellD.innerHTML = `
+                        <button class="remove-productD" title="Remove product" data-id="${productD.idD}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-containerD">
+                            <img src="${productD.imageD}" alt="${productD.nameD}" class="product-imageD">
+                        </div>
+                        <h3 class="product-nameD">${productD.nameD}</h3>
+                        <div class="product-priceD">$${productD.priceD.toLocaleString()}</div>
+                        <div class="product-ratingD">
+                            <div class="starsD">
+                                ${renderStarsD(productD.ratingD)}
+                            </div>
+                            <span class="rating-countD">(${productD.ratingCountD})</span>
+                        </div>
+                        ${productD.colorsD ? `
+                        <div class="color-optionsD">
+                            ${productD.colorsD.map(colorD => `
+                                <div class="color-optionD" style="background-color: ${colorD};"></div>
+                            `).join('')}
+                        </div>
+                        ` : ''}
+                        <button class="btnD btn-primaryD btn-add-to-cartD">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    `;
+                    theadD.appendChild(headerCellD);
+                    
+                    // Add event listener to remove button
+                    headerCellD.querySelector('.remove-productD').addEventListener('click', () => {
+                        removeProductFromComparisonD(productD.idD);
+                    });
+                });
+                
+                // Add "add product" cell if there's space
+                if (comparisonStateD.productsD.length < comparisonStateD.maxProductsD) {
+                    theadD.appendChild(elementsD.addProductCellD);
+                }
+                
+                // Generate specs body
+                tbodyD.innerHTML = '';
+                
+                if (comparisonStateD.productsD.length > 0) {
+                    // Get all unique spec categories from products
+                    const allSpecsD = new Set();
+                    comparisonStateD.productsD.forEach(productD => {
+                        Object.keys(productD.specsD).forEach(specD => allSpecsD.add(specD));
+                    });
+                    
+                    // Convert to array and map to display names
+                    const specCategoriesD = Array.from(allSpecsD).map(specD => ({
+                        keyD: specD,
+                        displayNameD: specD.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())
+                    }));
+                    
+                    // Group specs into feature groups
+                    const featureGroupsD = [
+                        {
+                            nameD: 'Performance',
+                            specsD: ['processorD', 'gpuD', 'ramD', 'storageD']
+                        },
+                        {
+                            nameD: 'Display',
+                            specsD: ['displaySizeD', 'displayResD', 'displayTypeD', 'refreshRateD']
+                        },
+                        {
+                            nameD: 'Battery & Connectivity',
+                            specsD: ['batteryLifeD', 'chargingD', 'portsD', 'wirelessD']
+                        },
+                        {
+                            nameD: 'Dimensions',
+                            specsD: ['weightD', 'thicknessD']
+                        },
+                        {
+                            nameD: 'Features',
+                            specsD: ['osD', 'keyboardD', 'touchscreenD', 'biometricsD', 'speakersD']
+                        },
+                        {
+                            nameD: 'Warranty',
+                            specsD: ['warrantyD']
+                        }
+                    ];
+                    
+                    // Render feature groups
+                    featureGroupsD.forEach(groupD => {
+                        // Only show group if at least one product has specs in this group
+                        const hasSpecsD = groupD.specsD.some(specD => 
+                            comparisonStateD.productsD.some(pD => pD.specsD[specD])
+                        );
+                        
+                        if (!hasSpecsD) return;
+                        
+                        // Add group header
+                        const groupRowD = document.createElement('tr');
+                        groupRowD.className = 'feature-groupD';
+                        groupRowD.innerHTML = `
+                            <td colspan="${comparisonStateD.productsD.length + 1}" class="feature-group-titleD">
+                                <i class="fas ${getSpecIconD(groupD.nameD)} spec-iconD"></i> ${groupD.nameD}
+                            </td>
+                        `;
+                        tbodyD.appendChild(groupRowD);
+                        
+                        // Add specs in this group
+                        groupD.specsD.forEach(specKeyD => {
+                            // Only show spec if at least one product has it
+                            const hasSpecD = comparisonStateD.productsD.some(pD => pD.specsD[specKeyD]);
+                            if (!hasSpecD) return;
+                            
+                            const specRowD = document.createElement('tr');
+                            
+                            // Spec name cell
+                            const specNameCellD = document.createElement('td');
+                            specNameCellD.className = 'spec-nameD';
+                            specNameCellD.textContent = specKeyD.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                            specRowD.appendChild(specNameCellD);
+                            
+                            // Spec value cells for each product
+                            comparisonStateD.productsD.forEach(productD => {
+                                const specValueCellD = document.createElement('td');
+                                specValueCellD.className = 'spec-valueD';
+                                specValueCellD.textContent = productD.specsD[specKeyD] || 'N/A';
+                                specRowD.appendChild(specValueCellD);
+                            });
+                            
+                            // Empty cell if there's space for more products
+                            if (comparisonStateD.productsD.length < comparisonStateD.maxProductsD) {
+                                const emptyCellD = document.createElement('td');
+                                specRowD.appendChild(emptyCellD);
+                            }
+                            
+                            tbodyD.appendChild(specRowD);
+                            
+                            // Highlight best specs (for numerical or clearly better values)
+                            highlightBestSpecsD(specKeyD, specRowD);
+                        });
+                    });
+                    
+                    // Show recommendation if we have one
+                    showRecommendationD();
+                } else {
+                    // Empty state
+                    tbodyD.innerHTML = `
+                        <tr>
+                            <td colspan="${comparisonStateD.maxProductsD + 1}" style="text-align: center; padding: 40px;">
+                                <div style="font-size: 18px; color: var(--grayD); margin-bottom: 20px;">
+                                    <i class="fas fa-balance-scale" style="font-size: 40px; margin-bottom: 15px; display: block;"></i>
+                                    No products to compare
+                                </div>
+                                <button class="btnD btn-primaryD" id="addProductBtn3D">
+                                    <i class="fas fa-plus"></i> Add Products
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    // Add event listener to the button
+                    document.getElementById('addProductBtn3D').addEventListener('click', openProductModalD);
+                    
+                    // Hide recommendation section
+                    elementsD.recommendationSectionD.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Error rendering comparison table:', error);
+            } finally {
+                // Always hide loading overlay when done
+                elementsD.loadingOverlayD.style.display = 'none';
+            }
+        });
+    }
+
+    // Get icon for spec category
+    function getSpecIconD(categoryNameD) {
+        switch(categoryNameD) {
+            case 'Performance': return 'fa-tachometer-alt';
+            case 'Display': return 'fa-desktop';
+            case 'Battery & Connectivity': return 'fa-battery-full';
+            case 'Dimensions': return 'fa-ruler-combined';
+            case 'Features': return 'fa-star';
+            case 'Warranty': return 'fa-shield-alt';
+            default: return 'fa-info-circle';
+        }
+    }
+
+    // Highlight the best specs in each row
+    function highlightBestSpecsD(specKeyD, rowD) {
+        const cellsD = rowD.querySelectorAll('td:not(.spec-nameD)');
+        const valuesD = Array.from(cellsD).map(cellD => cellD.textContent);
+        
+        // Skip if all values are the same
+        if (new Set(valuesD).size <= 1) return;
+        
+        // Determine which value is best based on spec type
+        let bestIndexD = 0;
+        
+        // Numerical comparisons
+        if (specKeyD.includes('Size') || specKeyD.includes('Res') || 
+            specKeyD.includes('Life') || specKeyD.includes('Rate')) {
+            // Higher is better
+            bestIndexD = valuesD.reduce((bestIdxD, valD, idxD, arrD) => {
+                const numValD = parseFloat(valD) || 0;
+                const bestNumD = parseFloat(arrD[bestIdxD]) || 0;
+                return numValD > bestNumD ? idxD : bestIdxD;
+            }, 0);
+        } else if (specKeyD.includes('weight') || specKeyD.includes('thickness')) {
+            // Lower is better
+            bestIndexD = valuesD.reduce((bestIdxD, valD, idxD, arrD) => {
+                const numValD = parseFloat(valD) || Infinity;
+                const bestNumD = parseFloat(arrD[bestIdxD]) || Infinity;
+                return numValD < bestNumD ? idxD : bestNumD;
+            }, 0);
+        } else if (specKeyD === 'storage' || specKeyD === 'ram') {
+            // Compare storage/ram sizes
+            bestIndexD = valuesD.reduce((bestIdxD, valD, idxD, arrD) => {
+                const currentSizeD = parseStorageSizeD(valD);
+                const bestSizeD = parseStorageSizeD(arrD[bestIdxD]);
+                return currentSizeD > bestSizeD ? idxD : bestIdxD;
+            }, 0);
+        }
+        
+        // Apply highlight
+        cellsD[bestIndexD].classList.add('highlightD');
+    }
+
+    // Parse storage size (e.g., "512GB" -> 512, "1TB" -> 1000)
+    function parseStorageSizeD(sizeStrD) {
+        if (!sizeStrD) return 0;
+        
+        const numD = parseFloat(sizeStrD);
+        if (sizeStrD.includes('TB')) return numD * 1000;
+        return numD;
+    }
+
+    // Show recommendation if available
+    function showRecommendationD() {
+        // Find a product with recommendation data
+        const recommendedProductD = comparisonStateD.productsD.find(pD => pD.recommendationD);
+        
+        if (!recommendedProductD) {
+            elementsD.recommendationSectionD.style.display = 'none';
+            return;
+        }
+        
+        // Populate recommendation section
+        elementsD.recommendationImageD.src = recommendedProductD.imageD;
+        elementsD.recommendationImageD.alt = recommendedProductD.nameD;
+        elementsD.recommendationTitleD.textContent = recommendedProductD.nameD;
+        elementsD.recommendationPriceD.textContent = `$${recommendedProductD.priceD.toLocaleString()}`;
+        elementsD.recommendationTextD.textContent = recommendedProductD.recommendationD.textD;
+        
+        // Clear previous reasons
+        elementsD.recommendationReasonsD.innerHTML = '';
+        
+        // Add reasons
+        recommendedProductD.recommendationD.reasonsD.forEach(reasonD => {
+            const liD = document.createElement('li');
+            liD.style.marginBottom = '10px';
+            liD.style.display = 'flex';
+            liD.style.alignItems = 'flex-start';
+            liD.style.gap = '10px';
+            liD.innerHTML = `
+                <i class="fas fa-check-circle" style="color: var(--successD); margin-top: 3px;"></i>
+                <span>${reasonD}</span>
+            `;
+            elementsD.recommendationReasonsD.appendChild(liD);
+        });
+        
+        // Show section
+        elementsD.recommendationSectionD.style.display = 'block';
+    }
+
+    // Update URL with current comparison state
+    function updateURLD() {
+        // In a real app, you would update the URL with product IDs
+        // For this demo, we'll just log it
+        const productIdsD = comparisonStateD.productsD.map(pD => pD.idD);
+        console.log('URL would update with product IDs:', productIdsD.join(','));
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', initD);
+
+    
+</script>
+    <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+ <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

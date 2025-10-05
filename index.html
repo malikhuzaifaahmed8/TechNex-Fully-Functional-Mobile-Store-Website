@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNex | Premium Electronics Marketplace</title>
+    <link rel="shortcut icon" href="images/bolt (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/content.css">
+</head>
+
+<body>
+    <!-- Loading screen with particles -->
+    <div class="loader">
+        <div class="loader-circle"></div>
+        <div class="particles" id="loader-particles"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-wrapper">
+            <!-- Top header -->
+            <div class="top-header">
+                <div class="container">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +92 3154767466</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@technex.com</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-truck"></i> Free shipping on orders over $99</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> English</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mid header -->
+            <div class="mid-header">
+                <div class="container">
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <i class="fas fa-bolt logo-icon"></i>
+                        <span>TechNex</span>
+                    </a>
+
+                    <div class="search">
+                        <input type="text" placeholder="Search for products..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <ul class="user-menu">
+                     <!-- User Icon in Navbar -->
+<li class="user-auth">
+  <!-- Default state (not logged in) -->
+  <a href="#" class="user-icon" id="authTrigger">
+    <i class="far fa-user"></i>
+  </a>
+  
+  <!-- Logged in state (hidden by default) -->
+  <div class="logged-in-state" style="display:none;">
+    <div class="profile-dropdown-trigger">
+      <img src="images/default-avatar.jpg" class="user-avatar" alt="User">
+      <i class="fas fa-caret-down dropdown-arrow"></i>
+    </div>
+    
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-dropdown">
+      <div class="dropdown-header">
+        <img src="images/default-avatar.jpg" class="dropdown-avatar" alt="User">
+        <div class="dropdown-user-info">
+          <span class="dropdown-username">John Doe</span>
+          <span class="dropdown-email">john@example.com</span>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="profileLink">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="dropdown-item" id="settingsLink">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" id="logoutLink">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+</li>
+
+<!-- Auth Modal -->
+<div class="auth-modal">
+  <div class="auth-close" id="authClose">
+    <i class="fas fa-times"></i>
+  </div>
+  
+  <div class="auth-tabs">
+    <div class="tab active" data-tab="signup">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </div>
+    <div class="tab" data-tab="login">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </div>
+  </div>
+  
+  <!-- Signup Form -->
+  <form id="signupForm" class="auth-form active">
+    <div class="input-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" id="signupName" placeholder="Your Name" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-user-plus"></i> Sign Up
+    </button>
+    <div class="auth-footer">
+      Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a>
+    </div>
+  </form>
+  
+  <!-- Login Form -->
+  <form id="loginForm" class="auth-form">
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+    </div>
+    <div class="remember-me">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="auth-submit">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <div class="auth-footer">
+      Don't have an account? <a href="#" class="switch-tab" data-tab="signup">Sign Up</a>
+    </div>
+  </form>
+</div>
+<div class="auth-overlay"></div>
+               <!-- In your navigation bar -->
+                     <!-- Wishlist Icon in Navbar -->
+<li>
+  <a href="#" class="wishlist-toggle">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count">0</span>
+  </a>
+</li>
+
+<!-- Wishlist Popup -->
+<div class="wishlist-popup-overlay"></div>
+<div class="wishlist-popup">
+  <div class="wishlist-header">
+    <h3>Your Wishlist</h3>
+    <button class="close-wishlist">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="wishlist-items">
+    <!-- Items will be added here dynamically -->
+    <div class="empty-wishlist">
+      <i class="far fa-heart"></i>
+      <p>Your wishlist is empty</p>
+    </div>
+  </div>
+</div>
+    <a href="#" class="toggle-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="notification-bubble">3</span>
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom header -->
+            <div class="bottom-header">
+                <div class="container">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="mega-dropdown">
+                            <a href="shop.html">Shop <i class="fas fa-chevron-down"></i></a>
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smartphones</h3>
+                                            <ul>
+                                                <li><a href="shop.html">iPhone 15 Series</a></li>
+                                                <li><a href="shop.html">Samsung Galaxy S23</a></li>
+                                                <li><a href="shop.html">Google Pixel 8</a></li>
+                                                <li><a href="shop.html">OnePlus 11</a></li>
+                                                <li><a href="shop.html">Xiaomi 13 Series</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Laptops</h3>
+                                            <ul>
+                                                <li><a href="shop.html">MacBook Pro/Air</a></li>
+                                                <li><a href="shop.html">Dell XPS</a></li>
+                                                <li><a href="shop.html">HP Spectre</a></li>
+                                                <li><a href="shop.html">Lenovo ThinkPad</a></li>
+                                                <li><a href="shop.html">ASUS ROG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Audio</h3>
+                                            <ul>
+                                                <li><a href="shop.html">AirPods Pro</a></li>
+                                                <li><a href="shop.html">Sony WH-1000XM5</a></li>
+                                                <li><a href="shop.html">Bose QuietComfort</a></li>
+                                                <li><a href="shop.html">JBL Speakers</a></li>
+                                                <li><a href="shop.html">Sennheiser Headphones</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="box">
+                                            <h3>Smart Home</h3>
+                                            <ul>
+                                                <li><a href="shop.html">Smart TVs</a></li>
+                                                <li><a href="shop.html">Smart Watches</a></li>
+                                                <li><a href="shop.html">Home Security</a></li>
+                                                <li><a href="shop.html">Smart Lighting</a></li>
+                                                <li><a href="shop.html">Voice Assistants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-row">
+                                    <img src="images/ultrass.png" alt="Samsung Galaxy S23">
+                                    <img src="images/dell laptop.avif" alt="Dell XPS 15">
+                                    <img src="images/apple-apple-airpods-max-silver.webp" alt="Sony WH-1000XM5">
+                                    <img src="images/md08003934-DZ-2-jpg.avif" alt="LG OLED TV">
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="deals.html">Deals</a></li>
+                        <li><a href="compare.html">Compare</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div>
+<nav class="mobile-menu">
+    <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+    </button>
+    <ul class="mobile-nav" >
+        <li><a href="index.html" class="active">Home</a></li>
+        <li class="mobile-dropdown">
+            <a href="shop.html" class="mobile-dropdown-toggle">Shop <i class="fas fa-chevron-down"></i></a>
+            <ul class="mobile-dropdown-menu">
+                <li><a href="shop.html">Smartphones</a></li>
+                <li><a href="shop.html">Laptops</a></li>
+                <li><a href="shop.html">Audio</a></li>
+                <li><a href="shop.html">Smart Home</a></li>
+            </ul>
+        </li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="compare.html">Compare</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+    </ul>
+</nav>
+
+    <!-- Hero Section with Enhanced Animations -->
+    <section class="hero" id="hero-section">
+        <div class="slider">
+            <!-- Slide 1 -->
+            <div class="slide active tilt-element">
+                <div class="particles" id="particles-1"></div>
+                <div class="info">
+                    <div class="info-content">
+                        <h3 class="gradient-text">New Arrival</h3>
+                        <h2>Samsung Galaxy S23 Ultra</h2>
+                        <p>Experience the ultimate in smartphone technology with our most advanced camera system, stunning Nightography, and the fastest mobile processor yet.</p>
+                        <button class="btn btn-primary btn-hover-effect glow-border">Shop Now</button>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="images/dm3_s23_ultra_green_2023_4_1.jpg" alt="Samsung Galaxy S23 Ultra" class="floating" style="height: 400px;">
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide tilt-element">
+                <div class="particles" id="particles-2"></div>
+                <div class="info">
+                    <div class="info-content">
+                        <h3 class="gradient-text">Powerful. Portable.</h3>
+                        <h2>MacBook Pro 14" M3</h2>
+                        <p>Supercharged by M3, M3 Pro or M3 Max chips. Up to 22 hours of battery life. And a stunning Liquid Retina XDR display.</p>
+                        <button class="btn btn-primary btn-hover-effect glow-border">Shop Now</button>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="images/Untitled design (1).png" alt="MacBook Pro 14" class="floating">
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide tilt-element">
+                <div class="particles" id="particles-3"></div>
+                <div class="info">
+                    <div class="info-content">
+                        <h3 class="gradient-text">Next Generation</h3>
+                        <h2>Sony WH-1000XM5</h2>
+                        <p>Industry-leading noise cancellation, exceptional sound quality, and all-day comfort with 30-hour battery life.</p>
+                        <button class="btn btn-primary btn-hover-effect glow-border">Shop Now</button>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="images/Untitled design (2).png" alt="Sony WH-1000XM5" class="floating">
+                </div>
+            </div>
+
+            <!-- Slider controls -->
+            <button class="slide-controll slide-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slide-controll slide-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Brand Showcase -->
+    <section class="brand-showcase">
+      
+        <div class="brand-grid">
+            <div class="brand-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="brand-logos">
+                <div class="brand-name">Apple</div>
+            </div>
+            <div class="brand-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung" class="brand-logos">
+                <div class="brand-name">Samsung</div>
+            </div>
+            <div class="brand-card">
+                <img src="images/dell.png" alt="Dell" class="brand-logos">
+                <div class="brand-name">Dell</div>
+            </div>
+            <div class="brand-card">
+                <img src="images/sony.png" alt="Sony" class="brand-logos">
+                <div class="brand-name">Sony</div>
+            </div>
+            <div class="brand-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG" class="brand-logos">
+                <div class="brand-name">LG</div>
+            </div>
+            <div class="brand-card">
+                <img src="images/hp.png" alt="HP" class="brand-logos">
+                <div class="brand-name">HP</div>
+            </div>
+        </div>
+    </section>
+
+
+ <!-- Promotion Section -->
+    <section class="promotion">
+        <div class="container">
+            <div class="promotion-track">
+                <div class="promotion-card">
+                    <img src="images/promotion (4).png" alt="AirPods Pro">
+                    <div class="card-content">
+                        <h3>AirPods Pro (2nd Gen)</h3>
+                        <p>Active Noise Cancellation</p>
+                        <div class="card-details">
+                            <p>• 6hr battery with ANC</p>
+                            <p>• Water & sweat resistant</p>
+                            <p>• 4 ear tip sizes included</p>
+                            <p>• Spatial audio support</p>
+                        </div>
+                        <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="images/promotion (5).png" alt="Samsung Watch">
+                    <div class="card-content">
+                        <h3>Galaxy Watch 6</h3>
+                        <p>Advanced health tracking</p>
+                        <div class="card-details">
+                            <p>• Advanced sleep coaching</p>
+                            <p>• Body composition analysis</p>
+                            <p>• 44mm/40mm case sizes</p>
+                            <p>• Sapphire crystal glass</p>
+                        </div>
+                    <a href="shop.html"><button class="btn">Shop Now</button></a>
+
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="images/promotion (1).png" alt="Dell XPS">
+                    <div class="card-content">
+                        <h3>Dell XPS 15</h3>
+                        <p>4K InfinityEdge Display</p>
+                        <div class="card-details">
+                            <p>• Intel Core i9 processor</p>
+                            <p>• NVIDIA RTX 4070 GPU</p>
+                            <p>• OLED Touch display</p>
+                            <p>• CNC machined aluminum</p>
+                        </div>
+                         <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="images/promotion (2).png" alt="Sony Headphones">
+                    <div class="card-content">
+                        <h3>Sony WH-1000XM5</h3>
+                        <p>Industry-leading ANC</p>
+                        <div class="card-details">
+                            <p>• 30hr battery life</p>
+                            <p>• Precise touch controls</p>
+                            <p>• Multipoint connection</p>
+                            <p>• Speak-to-chat feature</p>
+                        </div>
+                         <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="images/promotion (3).png" alt="iPhone 15">
+                    <div class="card-content">
+                        <h3>iPhone 15 Pro Max</h3>
+                        <p>Titanium. So strong. So light.</p>
+                        <div class="card-details">
+                            <p>• A17 Pro chip</p>
+                            <p>• 6.7" Super Retina XDR</p>
+                            <p>• Titanium design</p>
+                            <p>• 5x Telephoto camera</p>
+                        </div>
+                        <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="MacBook Pro">
+                    <div class="card-content">
+                        <h3>MacBook Pro 16"</h3>
+                        <p>Mind-blowing performance</p>
+                        <div class="card-details">
+                            <p>• M2 Max chip</p>
+                            <p>• 16.2" Liquid Retina XDR</p>
+                            <p>• Up to 96GB unified memory</p>
+                            <p>• 22hr battery life</p>
+                        </div>
+                         <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <!-- Duplicates for infinite loop -->
+                <div class="promotion-card">
+                    <img src="images/promotion (4).png" alt="AirPods Pro">
+                    <div class="card-content">
+                        <h3>AirPods Pro (2nd Gen)</h3>
+                        <p>Active Noise Cancellation</p>
+                        <div class="card-details">
+                            <p>• 6hr battery with ANC</p>
+                            <p>• Water & sweat resistant</p>
+                            <p>• 4 ear tip sizes included</p>
+                            <p>• Spatial audio support</p>
+                        </div>
+                         <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <img src="images/promotion (5).png" alt="Samsung Watch">
+                    <div class="card-content">
+                        <h3>Galaxy Watch 6</h3>
+                        <p>Advanced health tracking</p>
+                        <div class="card-details">
+                            <p>• Advanced sleep coaching</p>
+                            <p>• Body composition analysis</p>
+                            <p>• 44mm/40mm case sizes</p>
+                            <p>• Sapphire crystal glass</p>
+                        </div>
+                        <a href="shop.html"><button class="btn">Shop Now</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Rated Products -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>Top Rated Products</h2>
+                <p>Our customers' favorite tech gadgets</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card product-card-3d" data-aos="fade-up">
+                    <div class="product-card-img">
+                        <img src="images/ultra.png" alt="Samsung Galaxy S23 Ultra">
+                        <img src="images/ultras.png" alt="Samsung Galaxy S23 Ultra Back">
+                    </div>
+                    <div class="product-card-info">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-btn">
+                           <button class="btn-shop-now"><i class="fas fa-eye"></i></button>
+                             <a href="product-detail.html"><button class="btn-cart-add"><i class="fas fa-shopping-cart"></i></button></a>
+                          <button class="wishlist-btn" onclick="addToWishlist(PRODUCT_OBJECT)">
+  <i class="far fa-heart"></i> 
+</button>
+                        </div>
+                        <div class="product-card-name">Samsung Galaxy S23 Ultra 256GB</div>
+                        <div class="product-card-price">
+                            <del>$1,199</del>
+                            <span class="curr-price">$1,099</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(128)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card product-card-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card-img">
+                        <img src="images/file (8).png" alt="MacBook Pro">
+                        <img src="images/file (10).png" alt="MacBook Pro Open">
+                    </div>
+                    <div class="product-card-info">
+                        <div class="product-badge">Editor's Choice</div>
+                        <div class="product-btn">
+                            <button class="btn-shop-now"><i class="fas fa-eye"></i></button>
+                            <button class="btn-cart-add"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="product-card-name">MacBook Pro 14" M2 Pro</div>
+                        <div class="product-card-price">
+                            <del>$1,999</del>
+                            <span class="curr-price">$1,799</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(245)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card product-card-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card-img">
+                        <img src="images/kisspng-beats-electronics-headphones-apple-beats-studio-red-headphones.png" alt="Sony WH-1000XM5">
+                        <img src="images/kisspng-beats-electronics-headphones-apple-beats-studio-red-headphones.png" alt="Sony WH-1000XM5 Case">
+                    </div>
+                    <div class="product-card-info">
+                        <div class="product-badge">Limited</div>
+                        <div class="product-btn">
+                            <button class="btn-shop-now"><i class="fas fa-eye"></i></button>
+                            <button class="btn-cart-add"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="product-card-name">Sony WH-1000XM5 Headphones</div>
+                        <div class="product-card-price">
+                            <del>$399</del>
+                            <span class="curr-price">$349</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(189)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card product-card-3d" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card-img">
+                        <img src="images/OIP.png" alt="Dell XPS 15">
+                        <img src="images/file (1).png" alt="Dell XPS 15 Side">
+                    </div>
+                    <div class="product-card-info">
+                        <div class="product-badge">Popular</div>
+                        <div class="product-btn">
+                            <button class="btn-shop-now"><i class="fas fa-eye"></i></button>
+                            <button class="btn-cart-add"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="product-card-name">Dell XPS 15 (2023)</div>
+                        <div class="product-card-price">
+                            <del>$1,899</del>
+                            <span class="curr-price">$1,699</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(156)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8" data-aos="fade-up">
+                <button class="btn btn-dark">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Product -->
+    <section class="special-product">
+        <div class="container">
+            <div class="sp-grid">
+                <div class="sp-item-img">
+                    <img src="images/file (7).png" alt="iPhone 15 Pro" class="pulse">
+                </div>
+                <div class="sp-item-info">
+                    <div class="sp-item-badge">Special Offer</div>
+                    <div class="sp-item-name">iPhone 15 Pro Max</div>
+                    <p class="sp-item-description">
+                        The ultimate iPhone experience with the A17 Pro chip, titanium design, and our most advanced camera system. Featuring a 6.7-inch Super Retina XDR display, all-day battery life, and USB-C connectivity.
+                    </p>
+                    <div class="sp-item-price">
+                        <span class="original-price">From $1,199</span>
+                        <span class="discount-price">Now $1,099</span>
+                    </div>
+                    <div class="countdown-timer">
+                        <h4>Offer ends in:</h4>
+                        <div class="timer">
+                            <div class="timer-item">
+                                <span id="days">00</span>
+                                <span>Days</span>
+                            </div>
+                            <div class="timer-item">
+                                <span id="hours">00</span>
+                                <span>Hours</span>
+                            </div>
+                            <div class="timer-item">
+                                <span id="minutes">00</span>
+                                <span>Mins</span>
+                            </div>
+                            <div class="timer-item">
+                                <span id="seconds">00</span>
+                                <span>Secs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-hover-effect glow">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Upcoming Tech Products - White & Yellow Theme -->
+<section class="section tech-showcase">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Product Coming Soon</h2>
+                <p>Future of technology with these upcoming releases</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Apple Vision Pro -->
+            <div class="product-card" data-aos="fade-up">
+                <div class="card-badge">Mixed Reality</div>
+                <div class="product-image">
+                    <img src="images/Untitled design (6).png" alt="Apple Vision Pro" loading="lazy">
+                </div>
+                <div class="product-content">
+                    <div class="brand">
+                        <svg class="brand-icon" viewBox="0 0 24 24">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <span>Apple</span>
+                    </div>
+                    <h3 class="product-name">Vision Pro</h3>
+                    <p class="product-description">Revolutionary spatial computing with ultra-high-res displays</p>
+                    <div class="launch-info">
+                        <div class="launch-tag">
+                            <span class="dot-pulse"></span>
+                            <span>Q1 2024</span>
+                        </div>
+                        <button class="cta-button" style="color: white;">
+                            Get Notified
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Samsung Galaxy Z Fold 5 -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-badge">Foldable</div>
+                <div class="product-image">
+                    <img src="images/Untitled design (9).png" alt="Samsung Galaxy Z Fold 5" loading="lazy">
+                </div>
+                <div class="product-content">
+                    <div class="brand">
+                        <svg class="brand-icon" viewBox="0 0 24 24">
+                            <path d="M5.41 21c.36 0 .67-.13.93-.38l2.86-2.85-3.75-3.75-2.86 2.85c-.25.26-.39.57-.39.93 0 .71.4 1.1 1.21 1.2m12.93-8.94c.25-.25.36-.56.36-.92 0-.36-.12-.66-.36-.92l-2.87-2.84-3.83 3.83 2.91 2.91 3.79-3.86M5.41 5.36c-.36 0-.67.13-.93.39l-2.86 2.87c-.25.26-.39.57-.39.94 0 .71.4 1.1 1.21 1.2l2.85-2.86 3.79-3.79-3.67-3.67m13.12 6.72l-2.86-2.91-3.83 3.83 2.91 2.91 3.78-3.83m-5.98-3.84l-3.83 3.83 3.83 3.83 3.83-3.83-3.83-3.83z"/>
+                        </svg>
+                        <span>Samsung</span>
+                    </div>
+                    <h3 class="product-name">Galaxy Z Fold 5</h3>
+                    <p class="product-description">The most refined foldable phone with ultra-slim hinge</p>
+                    <div class="launch-info">
+                        <div class="launch-tag">
+                            <span class="dot-pulse"></span>
+                            <span>August 2023</span>
+                        </div>
+                          <button class="cta-button" style="color: white;">
+                            Get Notified
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dell Alienware Aurora R16 -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-badge">Gaming PC</div>
+                <div class="product-image">
+                    <img src="images/Untitled design (10).png" alt="Dell Alienware Aurora R16" loading="lazy">
+                </div>
+                <div class="product-content">
+                    <div class="brand">
+                        <svg class="brand-icon" viewBox="0 0 24 24">
+                            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,7H13V9H15V11H13V13H11V11H9V9H11V7M7,14A1,1 0 0,1 8,15A1,1 0 0,1 7,16A1,1 0 0,1 6,15A1,1 0 0,1 7,14M17,14A1,1 0 0,1 18,15A1,1 0 0,1 17,16A1,1 0 0,1 16,15A1,1 0 0,1 17,14Z"/>
+                        </svg>
+                        <span>Alienware</span>
+                    </div>
+                    <h3 class="product-name">Aurora R16</h3>
+                    <p class="product-description">Next-gen gaming desktop with liquid cooling technology</p>
+                    <div class="launch-info">
+                        <div class="launch-tag">
+                            <span class="dot-pulse"></span>
+                            <span>Sept 2023</span>
+                        </div>
+                        <button class="cta-button" style="color: white;">
+                            Get Notified
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sony PlayStation 5 Pro -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-badge">Gaming Console</div>
+                <div class="product-image">
+                    <img src="images/Untitled design (11).png" alt="Sony PlayStation 5 Pro" loading="lazy">
+                </div>
+                <div class="product-content">
+                    <div class="brand">
+                        <svg class="brand-icon" viewBox="0 0 24 24">
+                            <path d="M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M11,15H13V17H11V15M11,7H13V13H11V7"/>
+                        </svg>
+                        <span>Sony</span>
+                    </div>
+                    <h3 class="product-name">PlayStation 5 Pro</h3>
+                    <p class="product-description">8K gaming with advanced ray tracing and ultra-fast SSD</p>
+                    <div class="launch-info">
+                        <div class="launch-tag">
+                            <span class="dot-pulse"></span>
+                            <span>Holiday 2023</span>
+                        </div>
+                         <button class="cta-button" style="color: white;">
+                            Get Notified
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Product Comparison -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>Product Comparison</h2>
+                <p>Compare our top products side by side</p>
+            </div>
+
+            <div class="comparison-table-wrapper" data-aos="fade-up">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>iPhone 15 Pro</th>
+                            <th>Samsung S23 Ultra</th>
+                            <th>Google Pixel 8 Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Display</td>
+                            <td>6.1" Super Retina XDR</td>
+                            <td>6.8" Dynamic AMOLED 2X</td>
+                            <td>6.7" LTPO OLED</td>
+                        </tr>
+                        <tr>
+                            <td>Processor</td>
+                            <td>A17 Pro</td>
+                            <td>Snapdragon 8 Gen 2</td>
+                            <td>Google Tensor G3</td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td>8GB</td>
+                            <td>12GB</td>
+                            <td>12GB</td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td>128GB - 1TB</td>
+                            <td>256GB - 1TB</td>
+                            <td>128GB - 1TB</td>
+                        </tr>
+                        <tr>
+                            <td>Camera</td>
+                            <td>Triple 48MP + 12MP + 12MP</td>
+                            <td>Quad 200MP + 12MP + 10MP + 10MP</td>
+                            <td>Triple 50MP + 48MP + 48MP</td>
+                        </tr>
+                        <tr>
+                            <td>Battery</td>
+                            <td>Up to 23 hours</td>
+                            <td>5000mAh</td>
+                            <td>5050mAh</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>$999</td>
+                            <td>$1,199</td>
+                            <td>$999</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-8" data-aos="fade-up">
+                <button class="btn btn-dark">Compare More Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>What Our Customers Say</h2>
+                <p>Trusted by thousands of happy customers</p>
+            </div>
+
+            <div class="testimonials">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The Samsung Galaxy S23 Ultra exceeded all my expectations! The camera quality is phenomenal and the battery lasts all day. TechNex delivered it faster than expected with perfect packaging."
+                    </p>
+                    <div class="customer">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="customer-avatar">
+                        <div class="customer-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "My Dell XPS 15 arrived in perfect condition. The performance is incredible for my video editing work and the 4K display is stunning. TechNex had the best price I could find."
+                    </p>
+                    <div class="customer">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="customer-avatar">
+                        <div class="customer-info">
+                            <h4>Michael Chen</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The Sony WH-1000XM5 headphones are worth every penny! The noise cancellation is incredible and the sound quality is perfect. TechNex's customer service helped me choose the right model."
+                    </p>
+                    <div class="customer">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="customer-avatar">
+                        <div class="customer-info">
+                            <h4>Emma Rodriguez</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="newsletter" data-aos="fade-up">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get the latest tech news, exclusive offers and product announcements</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <!-- <button type="submit" class="btn btn-primary">Subscribe</button> -->
+                     <button type="submit" class="newsbtn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+   <!-- Floating Cart -->
+<div class="floating-cart toggle-cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="notification-bubble">0</span>
+</div>
+    <!-- Cart Popup Overlay -->
+<div class="cart-popup-overlay"></div>
+<div class="cart-popup">
+    <div class="cart-popup-header">
+        <h3>Your Shopping Cart</h3>
+        <button class="close-cart-btn" aria-label="Close cart">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="cart-items-container">
+        <!-- Cart items will be dynamically inserted here -->
+        <div class="empty-cart-message">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Your cart is empty</p>
+            <button class="btn btn-primary continue-shopping">Continue Shopping</button>
+        </div>
+    </div>
+    
+    <div class="cart-summary">
+        <div class="cart-totals">
+            <div class="subtotal">
+                <span>Subtotal:</span>
+                <span class="subtotal-amount">$0.00</span>
+            </div>
+            <div class="shipping">
+                <span>Shipping:</span>
+                <span class="shipping-amount">Calculated at checkout</span>
+            </div>
+            <div class="total">
+                <span>Total:</span>
+                <span class="total-amount">$0.00</span>
+            </div>
+        </div>
+        
+        <div class="cart-actions">
+            <button class="btn btn-outline view-cart">View Cart</button>
+            <button class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Smart Home</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Media Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p>
+                        Subscribe to our newsletter for exclusive offers, product launches, and tech tips.
+                    </p>
+                    <form>
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechNex. All Rights Reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Add before     <script src="js/main.js"></script>
+</body> -->
+<div class="mini-deals-popup-overlay"></div>
+<div class="mini-deals-popup">
+    <button class="close-mini-deals" aria-label="Close deals">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+    </button>
+    
+    <div class="mini-deal-content">
+        <div class="mini-deal-badge">-30%</div>
+        <img src="images/ultra.png" alt="Samsung Deal" class="mini-deal-image">
+        <div class="mini-deal-text">
+            <h4>Galaxy S23 Ultra</h4>
+            <p class="mini-deal-price">
+                <span class="original-price">$1,199</span>
+                <span class="current-price">$839</span>
+            </p>
+            <button class="mini-shop-now">Shop Now</button>
+        </div>
+    </div>
+</div>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/app.js"></script>
+    <!-- <script src="js/shop.js"></script> -->
+
+    <script>
+
+        // Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuClose.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+// Mobile Dropdown Toggle
+const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+mobileDropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+// Close mobile menu when clicking on links
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a:not(.mobile-dropdown-toggle)');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
